@@ -2,6 +2,14 @@ body {
   background-color: blue;
   text-align: center;
   margin: 0;
+  font-family: "Comic Sans MS", sans-serif;
+  color: red;
+  background-image: url("./images/cloud.jpg");
+}
+
+#title {
+  justify-content: space-around;
+  display: flex;
 }
 
 h1 {
@@ -10,7 +18,7 @@ h1 {
   justify-content: center;
   align-items: center;
   background-color: lightgreen;
-  color: white;
+  /*color: white;*/
 }
 
 input {
@@ -27,7 +35,9 @@ button {
   border: none;
   border-radius: 3px;
   background-color: lightgreen;
-  color: white;
+  font-family: "Comic Sans MS", sans-serif;
+  color: red;
+  /*color: white;*/
 }
 
 .logo {
@@ -49,14 +59,20 @@ button {
 
 .filter-buttons {
   margin-right: 30px;
+}
 
-.line-break {
+.page-break {
   height: 0px;
   width: 80%;
   border: 5px groove red;
-  margin: 2px;
+  margin: 2px auto;
 }
 
-#title {
+.netscape {
+  margin: 1px auto;
+}
+
+#footer {
   display: flex;
+  flex-direction: column;
 }
