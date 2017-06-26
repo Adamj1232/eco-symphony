@@ -49,4 +49,14 @@ button {
 
 .filter-buttons {
   margin-right: 30px;
+
+.line-break {
+  height: 0px;
+  width: 80%;
+  border: 5px groove red;
+  margin: 2px;
+}
+
+#title {
+  display: flex;
 }
