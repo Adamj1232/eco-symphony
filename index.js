@@ -1,16 +1,18 @@
-const addUrlAddress = document.querySelector('#add-url-address').value
-const addUrlButton = document.querySelector('#add-url-button')
-const addFolderTitle = document.querySelector('#add-folder-title').value
-const addFolderButton = document.querySelector('#add-folder-button')
+const addUrlAddress = document.getElementById('add-url-address')
+const addUrlButton = document.getElementById('add-url-button')
+const addFolderTitle = document.getElementById('add-folder-title')
+const addFolderButton = document.getElementById('add-folder-button')
 
-const filterByDate = document.querySelector('#filter-by-date')
-const filterByVisits = document.querySelector('#filter-by-visits')
+const filterByDate = document.getElementById('filter-by-date')
+const filterByVisits = document.getElementById('filter-by-visits')
 
 addUrlButton.addEventListener('click', function() {
+  console.log(addUrlAddress.value)
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
 addFolderButton.addEventListener('click', function() {
+  console.log(addFolderTitle.value)
   //check folder name vs existing folders and forward addFolderTitle to creating function
 })
 
