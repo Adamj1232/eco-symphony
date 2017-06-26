@@ -11,8 +11,31 @@ addUrlButton.addEventListener('click', function() {
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
+function deleteIdea(div){
+  deleteDiv = document.getElementById(div.id)
+  div.parentNode.removeChild(deleteDiv)
+}
+
 addFolderButton.addEventListener('click', function() {
-  console.log(addFolderTitle.value)
+  const newFolderName = addFolderTitle.value
+  var newFolderTitle = document.createElement('h2')
+  var newDiv = document.createElement('DIV')
+  var deleteBtn = document.createElement('BUTTON')
+  newDiv.id = Date.now()
+  newDiv.setAttribute('class', 'new-folder')
+
+  deleteBtn.innerHTML = 'Delete'
+  newFolderTitle.innerHTML = newFolderName
+  newFolderTitle.contentEditable = true
+
+  deleteBtn.addEventListener('click', () => {
+    deleteIdea(newDiv)
+  })
+
+  newDiv.appendChild(newFolderTitle)
+  newDiv.appendChild(deleteBtn)
+  document.getElementById('folders').appendChild(newDiv)
+  addFolderTitle.value = ''
   //check folder name vs existing folders and forward addFolderTitle to creating function
 })
 
