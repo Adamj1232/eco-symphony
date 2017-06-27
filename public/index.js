@@ -10,7 +10,47 @@ const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
 
 const selectedFolder = 'all'
-const folderArray = ['all']
+const folderArray = ['all', 'nothin']
+const storedLinks = []
+
+window.onload = function() {
+  //fetch to grab objects
+  parseInfo()
+  createFolders()
+}
+
+function parseInfo() {
+  storedLinks.forEach(link => {
+    let found = folderArray.find(link.folder) || undefined
+    if(found !== undefined) {
+      folderArray.push[link.folder]
+    }
+  })
+}
+
+function createFolders(){
+  folderArray.forEach(title => {
+    const newFolderName = title
+    let newFolderTitle = document.createElement('h2')
+    let newDiv = document.createElement('DIV')
+    let deleteBtn = document.createElement('BUTTON')
+
+    newDiv.id = Date.now()
+    newDiv.setAttribute('class', 'new-folder')
+
+    deleteBtn.innerHTML = 'Delete'
+    newFolderTitle.innerHTML = newFolderName
+    newFolderTitle.contentEditable = true
+
+    deleteBtn.addEventListener('click', () => {
+      deleteIdea(newDiv)
+    })
+
+    newDiv.appendChild(newFolderTitle)
+    newDiv.appendChild(deleteBtn)
+    document.getElementById('folders').appendChild(newDiv)
+  })
+}
 
 addUrlButton.addEventListener('click', function() {
   const newUrl = {url: addUrlAddress.value,
@@ -29,26 +69,28 @@ function deleteIdea(div){
 }
 
 addFolderButton.addEventListener('click', function() {
-  const newFolderName = addFolderTitle.value
-  var newFolderTitle = document.createElement('h2')
-  var newDiv = document.createElement('DIV')
-  var deleteBtn = document.createElement('BUTTON')
-  newDiv.id = Date.now()
-  newDiv.setAttribute('class', 'new-folder')
+  if(addFolderTitle.value) {
+    const newFolderName = addFolderTitle.value
+    let newFolderTitle = document.createElement('h2')
+    let newDiv = document.createElement('DIV')
+    let deleteBtn = document.createElement('BUTTON')
 
-  deleteBtn.innerHTML = 'Delete'
-  newFolderTitle.innerHTML = newFolderName
-  newFolderTitle.contentEditable = true
+    newDiv.id = Date.now()
+    newDiv.setAttribute('class', 'new-folder')
 
-  deleteBtn.addEventListener('click', () => {
-    deleteIdea(newDiv)
-  })
+    deleteBtn.innerHTML = 'Delete'
+    newFolderTitle.innerHTML = newFolderName
+    newFolderTitle.contentEditable = true
 
-  newDiv.appendChild(newFolderTitle)
-  newDiv.appendChild(deleteBtn)
-  document.getElementById('folders').appendChild(newDiv)
-  addFolderTitle.value = ''
-  //check folder name vs existing folders and forward addFolderTitle to creating function
+    deleteBtn.addEventListener('click', () => {
+      deleteIdea(newDiv)
+    })
+
+    newDiv.appendChild(newFolderTitle)
+    newDiv.appendChild(deleteBtn)
+    document.getElementById('folders').appendChild(newDiv)
+    addFolderTitle.value = ''
+  }
 })
 
 filterByDate.addEventListener('click', function() {
