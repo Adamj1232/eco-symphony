@@ -1,3 +1,5 @@
+const md5 = require ('md5')
+
 const express = require('express'); //import express
 const bodyParser = require('body-parser')
 const app = express(); //assign app
@@ -9,20 +11,40 @@ app.use(bodyParser.json()) //parses json to be readable in body or encoded as de
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static(`${__dirname}/public`))  //looks for public folder to send, HTML
+// app.use(favicon(path.join(__dirname, './', 'public', 'images', 'favicon.ico')));
+
+app.locals.links = {}
+
 
 app.get('/', (request, response) => {
   response.sendFile('index.html') //GET request is sent to this root/location and defining the response sent
 });
 
-// app.get('/api/secrets/:id', (request, response) => {
-//   const { id } = request.params //destructure params
-//   const message = app.locals.secrets[id] //recieve message from address
-//
-//   if (!message) { return response.sendStatus(404)  } //sends status 'not found' as defined by 404
-//
-//   response.json({ id, message }) //set response
-// })
-//
+app.post('/api/links', (request, response) => {
+  const { url, name, folder, time_stamp, clicks } = request.body
+  const body = request.body
+  const id = md5(url)
+
+  if (!url) {
+    return response.status(422).send({
+      error: 'No URL property provided'
+    })
+  }
+
+  app.locals.links[id] = body
+
+  response.status(201).json({ id, body }) //defines status that dev wants to send if successful, 201 = Created
+})
+
+app.get('/api/links/:id', (request, response) => {
+  const { id } = request.params //destructure params
+  const message = app.locals.secrets[id] //recieve message from address
+
+  if (!message) { return response.sendStatus(404)  } //sends status 'not found' as defined by 404
+
+  response.json({ id, message }) //set response
+})
+
 // app.put('/api/secrets/:id', (request, response) => {
 //   const { id } = request.params //destructure params
 //   const { message } = request.body
@@ -35,21 +57,6 @@ app.get('/', (request, response) => {
 //   if (!message) { return response.sendStatus(422)  } //sends status 'request missing something' as defined by 422
 //
 //   response.json({ id, message }) //set response
-// })
-//
-// app.post('/api/secrets', (request, response) => {
-//   const { message } = request.body
-//   const id = Date.now()   // orrrr use const id = md5(message)***
-//
-//   if (!message) {
-//     return response.status(422).send({
-//       error: 'No message property provided'
-//     })
-//   }
-//
-//   app.locals.secrets[id] = message
-//
-//   response.status(201).json({ id, message }) //defines status that dev wants to send if successful, 201 = Created
 // })
 
 app.listen(app.get('port'), () => {  //GET request is sent to this root/location and defining the response sent
