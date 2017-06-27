@@ -9,8 +9,17 @@ const stylin = document.getElementById('stylin')
 const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
 
+const selectedFolder = 'all'
+const folderArray = ['all']
+
 addUrlButton.addEventListener('click', function() {
-  console.log(addUrlAddress.value)
+  const newUrl = {url: addUrlAddress.value,
+                  name: addUrlAddress.value,
+                  folder: selectedFolder,
+                  time_stamp: Date.now(),
+                  clicks: 0}
+
+  console.log(newUrl)
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
