@@ -80,7 +80,7 @@ app.post('/api/v1/links', (req, res) => {
     })
 })
 
-// app.delete('/api/v1/links/:folder', (re))
+// app.delete('/api/v1/links/:folder', (req, res))
 
 app.listen(app.get('port'), () => {  //GET request is sent to this root/location and defining the response sent
   console.log(`${app.locals.title} is running on ${app.get('port')}.`) //logging what port the app is running at with the name - 'app.locals.title'...logged in terminal
