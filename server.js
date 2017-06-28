@@ -20,23 +20,23 @@ app.get('/', (request, response) => {
   response.sendFile('index.html') //GET request is sent to this root/location and defining the response sent
 });
 
-// app.get('/api/v1/folders', (req, res) => {
-//   database('folders').select()
-//     .then((folders) => {
-//       if(folders.length) {
-//         res.status(200).json(folders)
-//       } else {
-//         res.status(404).json({
-//           error: 'folder shit\'s not here bro'
-//         })
-//       }
-//     })
-//     .catch(() => {
-//       res.status(500).json({
-//         error: 'your guess is as good as ours'
-//       })
-//     })
-// })
+app.get('/api/v1/folders', (req, res) => {
+  database('folders').select()
+    .then((folders) => {
+      if(folders.length) {
+        res.status(200).json(folders)
+      } else {
+        res.status(404).json({
+          error: 'folder shit\'s not here bro'
+        })
+      }
+    })
+    .catch(() => {
+      res.status(500).json({
+        error: 'your guess is as good as ours'
+      })
+    })
+})
 
 app.get('/api/v1/links', (req, res) => {
   database('links').select()

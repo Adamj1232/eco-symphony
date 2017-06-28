@@ -24,53 +24,51 @@ const storedLinks = stubData
 window.onload = function() {
   //fetch to grab objects
   parseInfo()
-  createFolders()
 }
 
 function parseInfo() {
   if(storedLinks.length) {
     storedLinks.forEach(link => {
-      console.log(link.folder);
-      let found = folderArray.find(link.folder) || undefined
-      if(found !== undefined) {
-        folderArray.push[link.folder]
-    }
+      if(folderArray.indexOf(link.folder) === -1){
+        folderArray.push(link.folder)
+        createFolder(link.folder)
+      }
     })
   }
 }
 
-function createFolders(){
-  folderArray.forEach(title => {
-    const newFolderName = title
-    let newFolderTitle = document.createElement('h2')
-    let newDiv = document.createElement('DIV')
-    let deleteBtn = document.createElement('BUTTON')
+function createFolder(title) {
+  const newFolderName = title
 
-    newDiv.id = Date.now()
-    newDiv.setAttribute('class', 'new-folder')
+  let newFolderTitle = document.createElement('h2')
+  let newDiv = document.createElement('DIV')
+  let deleteBtn = document.createElement('BUTTON')
 
-    deleteBtn.innerHTML = 'Delete'
-    newFolderTitle.innerHTML = newFolderName
-    newFolderTitle.contentEditable = true
+  newDiv.id = Date.now()
+  newDiv.setAttribute('class', 'new-folder')
 
-    deleteBtn.addEventListener('click', () => {
-      deleteIdea(newDiv)
-    })
+  deleteBtn.innerHTML = 'Delete'
+  newFolderTitle.innerHTML = newFolderName
+  newFolderTitle.contentEditable = true
 
-    newDiv.appendChild(newFolderTitle)
-    newDiv.appendChild(deleteBtn)
-    document.getElementById('folders').appendChild(newDiv)
+  deleteBtn.addEventListener('click', () => {
+    deleteIdea(newDiv)
   })
+
+  newDiv.appendChild(newFolderTitle)
+  newDiv.appendChild(deleteBtn)
+  document.getElementById('folders').appendChild(newDiv)
 }
 
 addUrlButton.addEventListener('click', function() {
-  const newUrl = {url: addUrlAddress.value,
+  const newUrl = {
+                  url: addUrlAddress.value,
                   name: addUrlAddress.value,
                   folder: selectedFolder,
                   time_stamp: Date.now(),
-                  clicks: 0}
+                  clicks: 0
+                }
 
-  console.log(newUrl)
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
