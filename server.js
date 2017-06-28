@@ -24,7 +24,7 @@ app.get('/api/v1/folders', (req, res) => {
   database('folders').select()
     .then((folders) => {
       if(folders.length) {
-        res.status(202).json(folders)
+        res.status(200).json(folders)
       } else {
         res.status(404).json({
           error: 'folder shit\'s not here bro'
@@ -44,7 +44,7 @@ app.get('/api/v1/links', (req, res) => {
       console.log(links);
       if(links.length) {
         console.log('FIRE!');
-        res.status(204).json(links)
+        res.status(200).json(links)
       } else {
         res.status(404).json({
           error: 'link shit\'s not here bro'
