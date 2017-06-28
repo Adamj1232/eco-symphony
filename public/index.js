@@ -24,8 +24,10 @@ const folderArray = []
 
 const loadLinks = () => {
   fetch('/api/v1/links').then(res => {
+    console.log(res);
     res.json()
     .then(info => {
+      console.log(info);
       // storedLinks.push([...info])
       parseInfo(info)
     })
@@ -33,9 +35,8 @@ const loadLinks = () => {
 }
 
 
-window.onload = function() {
-  loadLinks()
-}
+loadLinks()
+
 
 function parseInfo(storedLinks) {
   if(storedLinks.length) {
