@@ -74,6 +74,28 @@ button {
   margin-right: 30px;
 }
 
+#selected-folder-container {
+  display: flex;
+  margin: 0 auto;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+#links-and-folders {
+  display: flex;
+}
+
+#links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#folders {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
 .page-break {
   height: 0px;
   width: 80%;

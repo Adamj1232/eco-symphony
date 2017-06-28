@@ -3,15 +3,16 @@ const addUrlButton = document.getElementById('add-url-button')
 const addFolderTitle = document.getElementById('add-folder-title')
 const addFolderButton = document.getElementById('add-folder-button')
 const whatYearIsIt = document.getElementById('what-year-is-it')
+const selectedFolder = document.getElementById('selected-folder')
 
 const stylin = document.getElementById('stylin')
 
 const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
 
-const selectedFolder = ''
+// let selectedFolder = ''
 const folderArray = []
-const storedLinks = stubData
+// let storedLinks = []
 
 // links have format
 // {url: '',
@@ -21,14 +22,25 @@ const storedLinks = stubData
 // clicks: '',
 // id: ''}
 
-window.onload = function() {
-  //fetch to grab objects
-  parseInfo()
+const loadLinks = () => {
+  fetch('/api/v1/links').then(res => {
+    res.json()
+    .then(info => {
+      // storedLinks.push([...info])
+      parseInfo(info)
+    })
+  })
 }
 
-function parseInfo() {
+
+window.onload = function() {
+  loadLinks()
+}
+
+function parseInfo(storedLinks) {
   if(storedLinks.length) {
     storedLinks.forEach(link => {
+      console.log(link.folder);
       if(folderArray.indexOf(link.folder) === -1){
         folderArray.push(link.folder)
         createFolder(link.folder)
@@ -39,7 +51,6 @@ function parseInfo() {
 
 function createFolder(title) {
   const newFolderName = title
-
   let newFolderTitle = document.createElement('h2')
   let newDiv = document.createElement('DIV')
   let deleteBtn = document.createElement('BUTTON')
@@ -64,13 +75,22 @@ addUrlButton.addEventListener('click', function() {
   const newUrl = {
                   url: addUrlAddress.value,
                   name: addUrlAddress.value,
-                  folder: selectedFolder,
+                  folder: folderCheck(),
                   time_stamp: Date.now(),
                   clicks: 0
                 }
-
+  addFolderTitle.value = ''
+  console.log(newUrl)
   //check url vs existing links and forward addUrlAddress to creating function
 })
+
+function folderCheck() {
+  if(!addFolderTitle.value) {
+    return selectedFolder.innerText
+  } else {
+    return addFolderTitle.value
+  }
+}
 
 function deleteIdea(div){
   deleteDiv = document.getElementById(div.id)
@@ -99,17 +119,24 @@ addFolderButton.addEventListener('click', function() {
     newDiv.appendChild(deleteBtn)
     document.getElementById('folders').appendChild(newDiv)
     addFolderTitle.value = ''
+    document.getElementById('selected-folder').innerText = `${newFolderName}`
   }
 })
+
+
 
 filterByDate.addEventListener('click', function() {
 
   //filter by most recent initially, but reverse if clicked again
 })
 
+
+
 filterByVisits.addEventListener('click', function() {
   //filter by most visits initially, but reverse if clicked again
 })
+
+
 
 whatYearIsIt.addEventListener('click', function() {
   if(stylin.getAttribute('href') === 'main.css') {

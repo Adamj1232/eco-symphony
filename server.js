@@ -17,14 +17,14 @@ app.use(express.static(`${__dirname}/public`))
 app.locals.links = {}
 
 app.get('/', (request, response) => {
-  response.sendFile('index.html') //GET request is sent to this root/location and defining the response sent
+  response.sendFile('index.html')
 });
 
 app.get('/api/v1/folders', (req, res) => {
   database('folders').select()
     .then((folders) => {
       if(folders.length) {
-        res.status(200).json(folders)
+        res.status(202).json(folders)
       } else {
         res.status(404).json({
           error: 'folder shit\'s not here bro'
@@ -41,8 +41,10 @@ app.get('/api/v1/folders', (req, res) => {
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
+      console.log(links);
       if(links.length) {
-        res.status(200).json(links)
+        console.log('FIRE!');
+        res.status(204).json(links)
       } else {
         res.status(404).json({
           error: 'link shit\'s not here bro'
@@ -63,19 +65,22 @@ app.post('/api/v1/links', (req, res) => {
     if(!link[requiredParameter]) {
       return res.status(422).json({
         error: `yo bro, need a url and a folder name.
-        you only sent ${link}. nice job`
+        you sent ${link}. nice job`
       })
     }
   }
 
   database('links').insert(link, 'id')
-    .then((link) => {
-      res.status(201).json(link)
+    .then((newLink) => {
+      console.log(newLink);
+      res.status(201).json(newLink)
     })
     .catch(error => {
       res.status(500).json({ error: 'what the hell are you doing?'})
     })
 })
+
+// app.delete('/api/v1/links/:folder', (re))
 
 app.listen(app.get('port'), () => {  //GET request is sent to this root/location and defining the response sent
   console.log(`${app.locals.title} is running on ${app.get('port')}.`) //logging what port the app is running at with the name - 'app.locals.title'...logged in terminal
