@@ -9,9 +9,17 @@ const stylin = document.getElementById('stylin')
 const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
 
-const selectedFolder = 'all'
-const folderArray = ['all', 'nothin']
-const storedLinks = []
+const selectedFolder = ''
+const folderArray = []
+const storedLinks = stubData
+
+// links have format
+// {url: '',
+// name: '',
+// folder: '',
+// time_stamp: '',
+// clicks: '',
+// id: ''}
 
 window.onload = function() {
   //fetch to grab objects
@@ -20,12 +28,15 @@ window.onload = function() {
 }
 
 function parseInfo() {
-  storedLinks.forEach(link => {
-    let found = folderArray.find(link.folder) || undefined
-    if(found !== undefined) {
-      folderArray.push[link.folder]
+  if(storedLinks.length) {
+    storedLinks.forEach(link => {
+      console.log(link.folder);
+      let found = folderArray.find(link.folder) || undefined
+      if(found !== undefined) {
+        folderArray.push[link.folder]
     }
-  })
+    })
+  }
 }
 
 function createFolders(){
