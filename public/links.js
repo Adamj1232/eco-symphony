@@ -56,6 +56,7 @@ function renderLink(link, id) {
 
   let newShortUrl = document.createElement('a')
   newShortUrl.setAttribute('href', `${newLink.url}`)
+  newShortUrl.setAttribute('target', '_blank')
   newShortUrl.addEventListener('click', (e) => {
     incrementClickShortURL(newDiv.id)
   })
