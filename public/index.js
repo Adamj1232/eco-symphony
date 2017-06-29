@@ -69,7 +69,6 @@ addUrlButton.addEventListener('click', function() {
 })
 
 const saveNewLink = (newUrl) => {
-  console.log(newUrl);
   fetch('/api/v1/links', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -124,7 +123,6 @@ addFolderButton.addEventListener('click', function() {
 })
 
 function evaluateFolder() {
-  console.log('evaluate folder');
   if(addFolderTitle.value &&
     folderArray.indexOf(addFolderTitle.value) === -1) {
     createFolder(addFolderTitle.value)
@@ -136,7 +134,6 @@ function evaluateFolder() {
 }
 
 function folderCheck() {
-  console.log('folderCheck');
   if(!addFolderTitle.value) {
     return selectedFolder.innerText
   } else {
@@ -196,7 +193,9 @@ function deleteIdea(e, div, deleteType, folderName){
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
-  selectedFolder.innerText = 'none'
+  .then(res => {
+    loadLinks()
+  })
   div.parentNode.removeChild(deleteDiv)
 }
 
