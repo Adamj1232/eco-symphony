@@ -11,6 +11,15 @@ h1 {
   margin-top: 0
 }
 
+input {
+  outline: none;
+  border-radius: 3px;
+  padding: 3px;
+  height: 15px;
+  border: 1px solid #BDC3C7;
+  width: 180px;
+}
+
 .nineties {
   display: none;
 }
@@ -24,4 +33,61 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.input-fields {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  height: 20px;
+}
+
+.folder-input-section {
+  margin-right: 30px;
+}
+
+.url-input-section {
+  margin-right: 30px;
+}
+
+.filter-buttons {
+  margin-right: 30px;
+}
+
+#folders {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#selected-folder {
+  margin-left: 5px;
+}
+
+#selected-folder-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+#links-and-folders {
+  display: flex;
+}
+
+#links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#folders {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  background-color: white;
 }
