@@ -35,7 +35,7 @@ app.get('/api/v1/links', (req, res) => {
     })
     .catch(() => {
       res.status(500).json({
-        error: 'totally out of line man'
+        error: 'Something went horribly wrong.'
       })
     })
 })
