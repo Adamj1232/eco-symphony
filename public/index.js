@@ -124,21 +124,22 @@ addUrlButton.addEventListener('click', function() {
                   url: addUrlAddress.value,
                   name: addUrlAddress.value,
                   folder: folderCheck(),
-                  time_stamp: Date.now(),
                   clicks: 0
                 }
+  saveNewLink(newUrl)
   addFolderTitle.value = ''
   addUrlAddress.value = ''
-  console.log(newUrl)
-  saveNewLink(newUrl)
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
 const saveNewLink = (newUrl) => {
-  console.log('SAVELINK URL', JSON.stringify(newUrl));
-  fetch('/api/v1/links', {method: "POST",
-                          body: JSON.stringify(newUrl)})
-    .then(res => {
+  console.log(newUrl);
+  fetch('/api/v1/links', {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newUrl)
+  })
+  .then(res => {
     res.json()
     .then(info => {
       parseInfo(info)
@@ -151,6 +152,9 @@ function folderCheck() {
   if(!addFolderTitle.value) {
     return selectedFolder.innerText
   } else {
+    if(folderArray.indexOf(addFolderTitle.value) > -1){
+      createFolder(addFolderTitle.value)
+    }
     return addFolderTitle.value
   }
 }
@@ -158,10 +162,7 @@ function folderCheck() {
 //need an alternative ID to date.now since multiple folders are created in the same milisecond
 
 function selectExistingFolder(location) {
-    console.log('LOCATIONARY', location);
     const nameOfSelectedFolder = location.firstChild
-    console.log(nameOfSelectedFolder);
-    console.log(selectedFolder);
     selectedFolder.innerText = nameOfSelectedFolder.innerText
     listLinks()
 }
@@ -175,7 +176,6 @@ function deleteIdea(e, div, deleteType, folderName){
     fetchUrl = `/api/v1/links/${id}`
     :
     fetchUrl = `/api/v1/links/folder/${folderName}`
-  console.log('delete text', folderName);
 
   fetch(fetchUrl, {
     method: "DELETE",
