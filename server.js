@@ -40,8 +40,6 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
-  console.log('OH MAN A LINK', link);
-  console.log('OH MAN A request', req.body);
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
       return res.status(422).json({
@@ -53,7 +51,6 @@ app.post('/api/v1/links', (req, res) => {
 
   database('links').insert(link, 'id')
     .then((newLink) => {
-      console.log(newLink);
       res.status(201).json(newLink)
     })
     .catch(error => {
