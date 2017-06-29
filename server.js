@@ -58,21 +58,26 @@ app.post('/api/v1/links', (req, res) => {
     })
 })
 
-app.get('/api/v1/links/visit/:id', (req, res) => {
-  const { url, name, folder, clicks, id } = req.params
-
+app.get('/api/v1/links/click/:id', (req, res) => {
+  const id = req.params.id
   database('links')
     .where('id', id)
-    .increment('visits', 1)
-    .then((info) => {
-      res.sendStatus(201)
+    .increment('clicks', 1)
+    .then(() => {
+      return database('links')
+            .where('id', id)
+            .select('url')
+    })
+    .then((longLink) => {
+      res.json(longLink)
     })
     .catch((error) => {
       res.sendStatus(500)
     })
 })
 
-// app.put('/api/v1/links/visit/:id', (req, res) => {
+//
+// app.put('/api/v1/links/edit/:id', (req, res) => {
 //   const { url, name, folder, clicks, id } = req.params
 //
 //   database('links')
