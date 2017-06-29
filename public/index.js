@@ -30,6 +30,7 @@ const loadLinks = () => {
     .then(info => {
       parseInfo(info)
       storedLinks = info
+      console.log(info);
       listLinks()
     })
   })

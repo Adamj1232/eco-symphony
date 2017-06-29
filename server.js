@@ -58,6 +58,38 @@ app.post('/api/v1/links', (req, res) => {
     })
 })
 
+app.get('/api/v1/links/visit/:id', (req, res) => {
+  const { url, name, folder, clicks, id } = req.params
+
+  database('links')
+    .where('id', id)
+    .increment('visits', 1)
+    .then((info) => {
+      res.sendStatus(201)
+    })
+    .catch((error) => {
+      res.sendStatus(500)
+    })
+})
+
+// app.put('/api/v1/links/visit/:id', (req, res) => {
+//   const { url, name, folder, clicks, id } = req.params
+//
+//   database('links')
+//     .where('id', id)
+//     .select()
+//     .update({url: url,
+//             name: name,
+//             folder: folder,
+//             clicks, clicks})
+//     .then((info) => {
+//       res.sendStatus(201)
+//     })
+//     .catch((error) => {
+//       res.sendStatus(500)
+//     })
+// })
+
 app.delete('/api/v1/links/folder/:folder', (req, res) => {
   const { folder } = req.params
   database('links').where('folder', folder).del()
