@@ -85,8 +85,11 @@ button {
 #selected-folder-container {
   display: flex;
   margin: 0 auto;
-  /*align-items: center;*/
   justify-content: center;
+}
+
+#selected-folder {
+  margin-left: 5px;
 }
 
 #links-and-folders {
