@@ -7,6 +7,7 @@ const selectedFolder = document.getElementById('selected-folder')
 const selectedFolderListener = document.getElementsByClassName('new-folder')
 
 let idCounter = 0
+let filteredByDate = ''
 
 const stylin = document.getElementById('stylin')
 
@@ -170,12 +171,15 @@ function createFolder(title) {
   newDiv.appendChild(newFolderTitle)
   newDiv.appendChild(deleteBtn)
   document.getElementById('folders').appendChild(newDiv)
+  filteredByDate = ''
+
 }
 
 function selectExistingFolder(location) {
-    const nameOfSelectedFolder = location.firstChild
-    selectedFolder.innerText = nameOfSelectedFolder.innerText
-    listLinks()
+  const nameOfSelectedFolder = location.firstChild
+  selectedFolder.innerText = nameOfSelectedFolder.innerText
+  listLinks()
+  filteredByDate = ''
 }
 
 
@@ -189,11 +193,6 @@ function deleteIdea(e, div, deleteType, folderName){
     const removeFolder = folderArray.indexOf(folderName)
     folderArray.splice(removeFolder, 1)
   }
-
-  console.log('e', e);
-  console.log('div', div.id);
-  console.log('deleteType', deleteType);
-  console.log('folderName', folderName);
 
   deleteType === 'url' ?
     fetchUrl = `/api/v1/links/${id}`
@@ -210,10 +209,20 @@ function deleteIdea(e, div, deleteType, folderName){
   div.parentNode.removeChild(deleteDiv)
 }
 
-filterByDate.addEventListener('click', function() {
-  console.log(storedLinks);
+function sortByDate(sortType) {
+  storedLinks.sort( (link1, link2) => {
+    return link2.updated_at > link1.updated_at
+  })
+}
 
-  //filter by most recent initially, but reverse if clicked again
+filterByDate.addEventListener('click', function() {
+
+  filteredByDate === '' ?
+    filteredByDate = 'clicked' && sortByDate()
+    :
+    filteredByDate = 'un-clicked' && storedLinks.reverse()
+
+  listLinks()
 })
 
 
