@@ -1,3 +1,27 @@
+body {
+  background-color: #ECF0F1;
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  background-color: #558c6d;
+  padding: 10px 0;
+  font-size: 3em;
+  margin-top: 0
+}
+
 .nineties {
   display: none;
+}
+
+.real-logo {
+  height: 60px;
+  margin: 0 10px;
+}
+
+.real {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
