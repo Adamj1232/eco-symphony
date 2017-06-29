@@ -96,6 +96,13 @@ button {
   width: 33%;
 }
 
+.link {
+  width: 200px;
+  height: 200px;
+  border: 2px solid red;
+  margin: 10px;
+}
+
 .page-break {
   height: 0px;
   width: 80%;
