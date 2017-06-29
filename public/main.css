@@ -96,6 +96,7 @@ button {
 #links {
   display: flex;
   flex-wrap: wrap;
+  width: 60%;
 }
 
 #folders {
