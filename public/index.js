@@ -30,6 +30,7 @@ const loadLinks = () => {
     .then(info => {
       parseInfo(info)
       storedLinks = info
+      listLinks()
     })
   })
 }
@@ -79,7 +80,6 @@ const saveNewLink = (newUrl) => {
     res.json()
     .then(newUrlId => {
       loadLinks()
-      renderLink(newUrl, newUrlId)
     })
   })
 }
@@ -130,8 +130,6 @@ function evaluateFolder() {
     createFolder(addFolderTitle.value)
     selectedFolder.innerText = addFolderTitle.value
     addFolderTitle.value = ''
-  } else {
-
   }
 }
 
@@ -213,6 +211,7 @@ function deleteIdea(e, div, deleteType, folderName){
 }
 
 filterByDate.addEventListener('click', function() {
+  console.log(storedLinks);
 
   //filter by most recent initially, but reverse if clicked again
 })
@@ -220,6 +219,7 @@ filterByDate.addEventListener('click', function() {
 
 
 filterByVisits.addEventListener('click', function() {
+
   //filter by most visits initially, but reverse if clicked again
 })
 
