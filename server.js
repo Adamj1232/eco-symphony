@@ -1,10 +1,12 @@
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
+const host = process.env.DOMAIN_ENV || 'localhost:3000';
 
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const shortid = require('shortid');
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Jet Fuel';
@@ -40,6 +42,14 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
+  link.name = `${host}/${shortid.generate()}`
+
+  if (!link.name) {
+    return response.status(422).send({
+      error: 'An error occurred generating a shortened url - please resubmit your link'
+    })
+  }
+
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
       return res.status(422).json({
