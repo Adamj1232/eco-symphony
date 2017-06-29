@@ -16,6 +16,10 @@ h1 {
   /*color: white;*/
 }
 
+.top-gun-logo {
+  width: 50%;
+}
+
 input {
   outline: none;
   border-radius: 3px;

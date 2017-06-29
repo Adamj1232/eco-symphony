@@ -40,7 +40,6 @@ function parseInfo(storedLinks) {
   if(storedLinks.length) {
     storedLinks.forEach(link => {
       if(folderArray.indexOf(link.folder) === -1){
-        folderArray.push(link.folder)
         createFolder(link.folder)
       }
     })
@@ -53,6 +52,33 @@ function listLinks() {
     if(selectedFolder.innerText == link.folder) {
       renderLink(link, link.id)
     }
+  })
+}
+
+addUrlButton.addEventListener('click', function() {
+  const newUrl = {
+                  url: addUrlAddress.value,
+                  name: addUrlAddress.value,
+                  folder: folderCheck(),
+                  time_stamp: Date.now(),
+                  clicks: 0
+                }
+  addFolderTitle.value = ''
+  console.log(newUrl)
+  saveNewLink(newUrl)
+  //check url vs existing links and forward addUrlAddress to creating function
+})
+
+const saveNewLink = (newUrl) => {
+  console.log('SAVELINK URL', JSON.stringify(newUrl));
+  fetch('/api/v1/links', {method: "POST",
+                          body: JSON.stringify(newUrl)})
+    .then(res => {
+    res.json()
+    .then(info => {
+      parseInfo(info)
+      storedLinks = info
+    })
   })
 }
 
@@ -91,6 +117,29 @@ function renderLink(link, id) {
   document.getElementById('links').appendChild(newDiv)
 }
 
+addFolderButton.addEventListener('click', function() {
+  evaluateFolder()
+})
+
+function evaluateFolder() {
+  if(addFolderTitle.value && folderArray.indexOf(addFolderTitle.value) === -1) {
+    createFolder(addFolderTitle.value)
+    selectedFolder.innerText = addFolderTitle.value
+    addFolderTitle.value = ''
+  } else {
+
+  }
+}
+
+function folderCheck() {
+  if(!addFolderTitle.value) {
+    return selectedFolder.innerText
+  } else {
+    evaluateFolder()
+    return addFolderTitle.value
+  }
+}
+
 function createFolder(title) {
   const newFolderName = title
   let newDiv = document.createElement('div')
@@ -98,6 +147,8 @@ function createFolder(title) {
   newDiv.addEventListener('click', () => {
     selectExistingFolder(newDiv)
   })
+
+  folderArray.push(newFolderName)
 
   newDiv.id = idCounter
   idCounter++
@@ -119,51 +170,13 @@ function createFolder(title) {
   document.getElementById('folders').appendChild(newDiv)
 }
 
-addUrlButton.addEventListener('click', function() {
-  const newUrl = {
-                  url: addUrlAddress.value,
-                  name: addUrlAddress.value,
-                  folder: folderCheck(),
-                  time_stamp: Date.now(),
-                  clicks: 0
-                }
-  addFolderTitle.value = ''
-  console.log(newUrl)
-  saveNewLink(newUrl)
-  //check url vs existing links and forward addUrlAddress to creating function
-})
-
-const saveNewLink = (newUrl) => {
-  console.log('SAVELINK URL', JSON.stringify(newUrl));
-  fetch('/api/v1/links', {method: "POST",
-                          body: JSON.stringify(newUrl)})
-    .then(res => {
-    res.json()
-    .then(info => {
-      parseInfo(info)
-      storedLinks = info
-    })
-  })
-}
-
-function folderCheck() {
-  if(!addFolderTitle.value) {
-    return selectedFolder.innerText
-  } else {
-    return addFolderTitle.value
-  }
-}
-
-//need an alternative ID to date.now since multiple folders are created in the same milisecond
-
 function selectExistingFolder(location) {
-    console.log('LOCATIONARY', location);
     const nameOfSelectedFolder = location.firstChild
-    console.log(nameOfSelectedFolder);
-    console.log(selectedFolder);
     selectedFolder.innerText = nameOfSelectedFolder.innerText
     listLinks()
 }
+
+//need an alternative ID to date.now since multiple folders are created in the same milisecond
 
 function deleteIdea(e, div, deleteType){
   console.log(e.path[1].id);
@@ -184,13 +197,6 @@ function deleteIdea(e, div, deleteType){
   selectedFolder.innerText = 'none'
   div.parentNode.removeChild(deleteDiv)
 }
-
-addFolderButton.addEventListener('click', function() {
-  if(addFolderTitle.value) {
-    createFolder(addFolderTitle.value)
-    selectedFolder.innerText = addFolderTitle.value
-  }
-})
 
 filterByDate.addEventListener('click', function() {
 
