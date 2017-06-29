@@ -41,9 +41,7 @@ app.get('/api/v1/folders', (req, res) => {
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
-      console.log(links);
       if(links.length) {
-        console.log('FIRE!');
         res.status(200).json(links)
       } else {
         res.status(404).json({
@@ -60,7 +58,8 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
-
+  console.log('OH MAN A LINK', link);
+  console.log('OH MAN A request', req.body);
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
       return res.status(422).json({
@@ -80,17 +79,26 @@ app.post('/api/v1/links', (req, res) => {
     })
 })
 
-app.delete('/api/v1/links/:folder', (req, res) => {
+app.delete('/api/v1/links/folder/:folder', (req, res) => {
   const { folder } = req.params
   database('links').where('folder', folder).del()
-  .then(() => {
-    res.sendStatus(200)
-  })
-  .catch(error => {
-    res.sendStatus(500)
-  })
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(error => {
+      res.sendStatus(500)
+    })
+})
 
-  // database('links').where('folder', req.params.folder).remove()
+app.delete('/api/v1/links/:id', (req, res) => {
+  const { id } = req.params
+  database('links').where('id', id).del()
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(error => {
+      res.sendStatus(500)
+    })
 })
 
 app.listen(app.get('port'), () => {  //GET request is sent to this root/location and defining the response sent
