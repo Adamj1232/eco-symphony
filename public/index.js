@@ -51,23 +51,23 @@ function listLinks() {
   document.getElementById('links').innerHTML = ''
   storedLinks.forEach(link => {
     if(selectedFolder.innerText == link.folder) {
-      renderLink(link)
+      renderLink(link, link.id)
     }
   })
 }
 
-function renderLink(link) {
+function renderLink(link, id) {
   const newLink = link
   let newDiv = document.createElement('div')
   newDiv.setAttribute('class', 'link')
-  newDiv.id = Date.now()
+  newDiv.id = id
 
   let deleteBtn = document.createElement('button')
   deleteBtn.innerText = 'Delete'
   deleteBtn.setAttribute('class', 'folder-delete-button')
   //switch css class to link-delete-button
-  deleteBtn.addEventListener('click', () => {
-    deleteIdea(newDiv)
+  deleteBtn.addEventListener('click', (e) => {
+    deleteIdea(e, newDiv, 'url')
   })
 
   let newUrlTitle = document.createElement('h5')
@@ -110,8 +110,8 @@ function createFolder(title) {
   newFolderTitle.innerText = newFolderName
   newFolderTitle.contentEditable = true
 
-  deleteBtn.addEventListener('click', () => {
-    deleteIdea(newDiv)
+  deleteBtn.addEventListener('click', (e) => {
+    deleteIdea(e, newDiv, 'folder')
   })
 
   newDiv.appendChild(newFolderTitle)
@@ -165,9 +165,22 @@ function selectExistingFolder(location) {
     listLinks()
 }
 
-function deleteIdea(div){
+function deleteIdea(e, div, deleteType){
+  console.log(e.path[1].id);
+  const id = e.path[1].id
   deleteDiv = document.getElementById(div.id)
+  let fetchUrl = ''
+
+  deleteType === 'url' ?
+    fetchUrl = `/api/v1/links/${id}`
+    :
+    fetchUrl = `/api/v1/links/folder/${id}`
   console.log('delete text', selectedFolder.innerText);
+
+  fetch(fetchUrl, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  })
   selectedFolder.innerText = 'none'
   div.parentNode.removeChild(deleteDiv)
 }
