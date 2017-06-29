@@ -69,7 +69,6 @@ addUrlButton.addEventListener('click', function() {
 })
 
 const saveNewLink = (newUrl) => {
-  console.log(newUrl);
   fetch('/api/v1/links', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -136,7 +135,6 @@ function evaluateFolder() {
 }
 
 function folderCheck() {
-  console.log('folderCheck');
   if(!addFolderTitle.value) {
     return selectedFolder.innerText
   } else {
@@ -207,7 +205,9 @@ function deleteIdea(e, div, deleteType, folderName){
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
-
+  .then(res => {
+    loadLinks()
+  })
   div.parentNode.removeChild(deleteDiv)
 }
 
