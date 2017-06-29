@@ -54,7 +54,8 @@ function renderLink(link, id) {
   newUrlTitle.innerText = `${newLink.url}`
   newUrl.appendChild(newUrlTitle)
 
-  let newShortUrl = document.createElement('h4')
+  let newShortUrl = document.createElement('a')
+  newShortUrl.setAttribute('href', `${newLink.url}`)
   newShortUrl.addEventListener('click', (e) => {
     incrementClickShortURL(newDiv.id)
   })
