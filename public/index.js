@@ -59,9 +59,10 @@ addUrlButton.addEventListener('click', function() {
   const newUrl = {
                   url: addUrlAddress.value,
                   name: addUrlAddress.value,
-                  folder: folderCheck(),
+                  folder: folderCheck(addFolderTitle.value),
                   clicks: 0
                 }
+                console.log(newUrl);
   saveNewLink(newUrl)
   addFolderTitle.value = ''
   addUrlAddress.value = ''
@@ -134,12 +135,12 @@ function evaluateFolder() {
   }
 }
 
-function folderCheck() {
-  if(!addFolderTitle.value) {
+function folderCheck(folderTitle) {
+  if(!folderTitle) {
     return selectedFolder.innerText
-  } else {
+  } else{
     evaluateFolder()
-    return addFolderTitle.value
+    return folderTitle
   }
 }
 
