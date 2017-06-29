@@ -20,24 +20,6 @@ app.get('/', (request, response) => {
   response.sendFile('index.html')
 });
 
-app.get('/api/v1/folders', (req, res) => {
-  database('folders').select()
-    .then((folders) => {
-      if(folders.length) {
-        res.status(200).json(folders)
-      } else {
-        res.status(404).json({
-          error: 'folder shit\'s not here bro'
-        })
-      }
-    })
-    .catch(() => {
-      res.status(500).json({
-        error: 'your guess is as good as ours'
-      })
-    })
-})
-
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
@@ -58,8 +40,6 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
-  console.log('OH MAN A LINK', link);
-  console.log('OH MAN A request', req.body);
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
       return res.status(422).json({
@@ -71,7 +51,6 @@ app.post('/api/v1/links', (req, res) => {
 
   database('links').insert(link, 'id')
     .then((newLink) => {
-      console.log(newLink);
       res.status(201).json(newLink)
     })
     .catch(error => {

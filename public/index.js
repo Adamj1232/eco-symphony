@@ -60,20 +60,22 @@ addUrlButton.addEventListener('click', function() {
                   url: addUrlAddress.value,
                   name: addUrlAddress.value,
                   folder: folderCheck(),
-                  time_stamp: Date.now(),
                   clicks: 0
                 }
-  addFolderTitle.value = ''
-  console.log(newUrl)
   saveNewLink(newUrl)
+  addFolderTitle.value = ''
+  addUrlAddress.value = ''
   //check url vs existing links and forward addUrlAddress to creating function
 })
 
 const saveNewLink = (newUrl) => {
-  console.log('SAVELINK URL', JSON.stringify(newUrl));
-  fetch('/api/v1/links', {method: "POST",
-                          body: JSON.stringify(newUrl)})
-    .then(res => {
+  console.log(newUrl);
+  fetch('/api/v1/links', {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newUrl)
+  })
+  .then(res => {
     res.json()
     .then(info => {
       parseInfo(info)
@@ -162,7 +164,7 @@ function createFolder(title) {
   newFolderTitle.contentEditable = true
 
   deleteBtn.addEventListener('click', (e) => {
-    deleteIdea(e, newDiv, 'folder')
+    deleteIdea(e, newDiv, 'folder', newFolderName)
   })
 
   newDiv.appendChild(newFolderTitle)
@@ -176,10 +178,8 @@ function selectExistingFolder(location) {
     listLinks()
 }
 
-//need an alternative ID to date.now since multiple folders are created in the same milisecond
 
-function deleteIdea(e, div, deleteType){
-  console.log(e.path[1].id);
+function deleteIdea(e, div, deleteType, folderName){
   const id = e.path[1].id
   deleteDiv = document.getElementById(div.id)
   let fetchUrl = ''
@@ -187,8 +187,7 @@ function deleteIdea(e, div, deleteType){
   deleteType === 'url' ?
     fetchUrl = `/api/v1/links/${id}`
     :
-    fetchUrl = `/api/v1/links/folder/${id}`
-  console.log('delete text', selectedFolder.innerText);
+    fetchUrl = `/api/v1/links/folder/${folderName}`
 
   fetch(fetchUrl, {
     method: "DELETE",
