@@ -77,9 +77,9 @@ const saveNewLink = (newUrl) => {
   })
   .then(res => {
     res.json()
-    .then(info => {
-      parseInfo(info)
-      storedLinks = info
+    .then(newUrlId => {
+      loadLinks()
+      renderLink(newUrl, newUrlId)
     })
   })
 }
@@ -124,7 +124,9 @@ addFolderButton.addEventListener('click', function() {
 })
 
 function evaluateFolder() {
-  if(addFolderTitle.value && folderArray.indexOf(addFolderTitle.value) === -1) {
+  console.log('evaluate folder');
+  if(addFolderTitle.value &&
+    folderArray.indexOf(addFolderTitle.value) === -1) {
     createFolder(addFolderTitle.value)
     selectedFolder.innerText = addFolderTitle.value
     addFolderTitle.value = ''
@@ -134,6 +136,7 @@ function evaluateFolder() {
 }
 
 function folderCheck() {
+  console.log('folderCheck');
   if(!addFolderTitle.value) {
     return selectedFolder.innerText
   } else {
