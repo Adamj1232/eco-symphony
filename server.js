@@ -76,25 +76,6 @@ app.get('/api/v1/links/click/:id', (req, res) => {
     })
 })
 
-//
-// app.put('/api/v1/links/edit/:id', (req, res) => {
-//   const { url, name, folder, clicks, id } = req.params
-//
-//   database('links')
-//     .where('id', id)
-//     .select()
-//     .update({url: url,
-//             name: name,
-//             folder: folder,
-//             clicks, clicks})
-//     .then((info) => {
-//       res.sendStatus(201)
-//     })
-//     .catch((error) => {
-//       res.sendStatus(500)
-//     })
-// })
-
 app.delete('/api/v1/links/folder/:folder', (req, res) => {
   const { folder } = req.params
   database('links').where('folder', folder).del()
