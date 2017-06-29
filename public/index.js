@@ -8,6 +8,7 @@ const selectedFolderListener = document.getElementsByClassName('new-folder')
 
 let idCounter = 0
 let filteredByDate = ''
+let filteredByClicks = ''
 
 const stylin = document.getElementById('stylin')
 
@@ -210,16 +211,16 @@ function deleteIdea(e, div, deleteType, folderName){
   div.parentNode.removeChild(deleteDiv)
 }
 
-function sortByDate(sortType) {
+function sortLinks(sortType) {
   storedLinks.sort( (link1, link2) => {
-    return link2.updated_at > link1.updated_at
+    return link2[sortType] > link1[sortType]
   })
 }
 
 filterByDate.addEventListener('click', function() {
 
   filteredByDate === '' ?
-    filteredByDate = 'clicked' && sortByDate()
+    filteredByDate = 'clicked' && sortLinks('updated_at')
     :
     filteredByDate = 'un-clicked' && storedLinks.reverse()
 
@@ -230,6 +231,12 @@ filterByDate.addEventListener('click', function() {
 
 filterByVisits.addEventListener('click', function() {
 
+  filteredByClicks === '' ?
+    filteredByClicks = 'clicked' && sortLinks('clicks')
+    :
+    filteredByClicks = 'un-clicked' && storedLinks.reverse()
+
+  listLinks()
   //filter by most visits initially, but reverse if clicked again
 })
 
