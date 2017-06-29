@@ -128,6 +128,7 @@ addUrlButton.addEventListener('click', function() {
                   clicks: 0
                 }
   addFolderTitle.value = ''
+  addUrlAddress.value = ''
   console.log(newUrl)
   saveNewLink(newUrl)
   //check url vs existing links and forward addUrlAddress to creating function
