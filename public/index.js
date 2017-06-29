@@ -124,9 +124,9 @@ addFolderButton.addEventListener('click', function() {
 })
 
 function evaluateFolder() {
-  console.log('evaluate folder');
   if(addFolderTitle.value &&
     folderArray.indexOf(addFolderTitle.value) === -1) {
+    console.log('evaluate folder', addFolderTitle.value);
     createFolder(addFolderTitle.value)
     selectedFolder.innerText = addFolderTitle.value
     addFolderTitle.value = ''
@@ -187,6 +187,17 @@ function deleteIdea(e, div, deleteType, folderName){
   deleteDiv = document.getElementById(div.id)
   let fetchUrl = ''
 
+  if(deleteType == 'folder') {
+    selectedFolder.innerText = 'none'
+    const removeFolder = folderArray.indexOf(folderName)
+    folderArray.splice(removeFolder, 1)
+  }
+
+  console.log('e', e);
+  console.log('div', div.id);
+  console.log('deleteType', deleteType);
+  console.log('folderName', folderName);
+
   deleteType === 'url' ?
     fetchUrl = `/api/v1/links/${id}`
     :
@@ -196,7 +207,7 @@ function deleteIdea(e, div, deleteType, folderName){
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
-  selectedFolder.innerText = 'none'
+
   div.parentNode.removeChild(deleteDiv)
 }
 
