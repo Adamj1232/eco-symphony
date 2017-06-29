@@ -85,10 +85,15 @@ const saveNewLink = (newUrl) => {
   })
 }
 
-// const incrementClickLongURL = (id) => {
-//   fetch(`/api/v1/links/click/${id}`)
-//     .then
-// }
+const incrementClickShortURL = (id) => {
+  fetch(`/api/v1/links/click/${id}`)
+    .then((link) => {
+      link.json()
+      .then((cleanLink) => {
+        window.location.href = `${cleanLink[0].url}`
+      })
+    })
+}
 
 function renderLink(link, id) {
   const newLink = link
@@ -110,16 +115,19 @@ function renderLink(link, id) {
   newUrlTitle.innerText = `${newLink.url}`
   newUrl.appendChild(newUrlTitle)
 
-  let newName = document.createElement('a')
-  newName.setAttribute('href', newLink.url)
-  newName.innerText = `${newLink.name}`
+  let newShortUrl = document.createElement('h4')
+  newShortUrl.addEventListener('click', (e) => {
+    incrementClickShortURL(newDiv.id)
+  })
+  newShortUrl.setAttribute('href', newLink.url)
+  newShortUrl.innerText = `${newLink.name}`
 
   let newClicks = document.createElement('p')
   newClicks.innerText = `${newLink.clicks}`
   newClicks.setAttribute('class', 'link-clicks')
 
   newDiv.appendChild(newUrl)
-  newDiv.appendChild(newName)
+  newDiv.appendChild(newShortUrl)
   newDiv.appendChild(newClicks)
   newDiv.appendChild(deleteBtn)
   document.getElementById('links').appendChild(newDiv)
