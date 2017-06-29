@@ -111,7 +111,7 @@ function createFolder(title) {
   newFolderTitle.contentEditable = true
 
   deleteBtn.addEventListener('click', (e) => {
-    deleteIdea(e, newDiv, 'folder')
+    deleteIdea(e, newDiv, 'folder', newFolderName)
   })
 
   newDiv.appendChild(newFolderTitle)
@@ -165,8 +165,7 @@ function selectExistingFolder(location) {
     listLinks()
 }
 
-function deleteIdea(e, div, deleteType){
-  console.log(e.path[1].id);
+function deleteIdea(e, div, deleteType, folderName){
   const id = e.path[1].id
   deleteDiv = document.getElementById(div.id)
   let fetchUrl = ''
@@ -174,8 +173,8 @@ function deleteIdea(e, div, deleteType){
   deleteType === 'url' ?
     fetchUrl = `/api/v1/links/${id}`
     :
-    fetchUrl = `/api/v1/links/folder/${id}`
-  console.log('delete text', selectedFolder.innerText);
+    fetchUrl = `/api/v1/links/folder/${folderName}`
+  console.log('delete text', folderName);
 
   fetch(fetchUrl, {
     method: "DELETE",
