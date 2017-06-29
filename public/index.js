@@ -87,6 +87,11 @@ const saveNewLink = (newUrl) => {
   })
 }
 
+// const incrementClickLongURL = (id) => {
+//   fetch(`/api/v1/links/click/${id}`)
+//     .then
+// }
+
 function renderLink(link, id) {
   const newLink = link
   let newDiv = document.createElement('div')
