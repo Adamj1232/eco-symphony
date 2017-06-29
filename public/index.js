@@ -90,7 +90,8 @@ const incrementClickShortURL = (id) => {
     .then((link) => {
       link.json()
       .then((cleanLink) => {
-        window.location.href = `${cleanLink[0].url}`
+        loadLinks()
+        window.open.href = `${cleanLink[0].url}`
       })
     })
 }
