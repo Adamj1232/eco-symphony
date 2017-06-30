@@ -66,7 +66,7 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
-  link.name = `${host}/${shortid.generate()}`
+  link.name = `${host}${shortid.generate()}`
 
   if (!link.name) {
     return response.status(422).send({
