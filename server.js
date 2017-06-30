@@ -1,7 +1,11 @@
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
+<<<<<<< HEAD
 const host = process.env.DOMAIN_ENV || 'localhost:3000/'
+=======
+const host = process.env.DOMAIN_ENV ;
+>>>>>>> e28d96647a88536378210f4e660ec27525e8ba3f
 
 const express = require('express')
 const app = express()
@@ -69,7 +73,11 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
+<<<<<<< HEAD
   link.name = `${shortid.generate()}`
+=======
+  link.name = `${host}${shortid.generate()}`
+>>>>>>> e28d96647a88536378210f4e660ec27525e8ba3f
 
   if (!link.name) {
     return response.status(422).send({
