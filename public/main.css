@@ -36,6 +36,7 @@ button {
   background-color: lightgreen;
   font-family: "Comic Sans MS", sans-serif;
   color: red;
+  margin-top: 10px;
 }
 
 #footer {
