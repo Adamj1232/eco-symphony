@@ -2,6 +2,8 @@ body {
   background-color: #ECF0F1;
   text-align: center;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 h1 {
@@ -89,5 +91,17 @@ input {
   display: flex;
   flex-direction: column;
   width: 33%;
-  background-color: white;
+}
+
+.new-folder {
+  padding: 20px;
+  background: #DDDDDD;
+  width: 50%;
+}
+
+.link {
+  margin: 5px 10px;
+  padding: 5px;
+  border: 1px #333333 solid;
+
 }
