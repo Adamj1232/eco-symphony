@@ -61,7 +61,7 @@ describe('API Routes', () => {
 
     it('should redirect to long link when provided with short link', (done) => {
       chai.request(server)
-      .get('/localhost:3000/r1Akmf74-')
+      .get('/r1Akmf74-')
       .end((err, response) => {
         response.should.have.status(301)
         // response.should.be.json
@@ -92,54 +92,4 @@ describe('API Routes', () => {
     })
   })
 
-  describe('POST /api/v1/links', () => {
-    it('should create a new link', (done) => {
-      chai.request(server)
-      .post('/api/v1/links')
-      .send({
-        lastname: 'Knuth',
-        program: 'FE',
-        enrolled: true
-      })
-      .end((err, response) => {
-        response.should.have.status(201);
-        response.body.should.be.a('object');
-        response.body.should.have.property('lastname');
-        response.body.lastname.should.equal('Knuth');
-        response.body.should.have.property('program');
-        response.body.program.should.equal('FE');
-        response.body.should.have.property('enrolled');
-        response.body.enrolled.should.equal(true);
-        chai.request(server)
-        .get('/api/v1/students')
-        .end((err, response) => {
-          response.should.have.status(200);
-          response.should.be.json;
-          response.body.should.be.a('array');
-          response.body.length.should.equal(4);
-          response.body[3].should.have.property('lastname');
-          response.body[3].lastname.should.equal('Knuth');
-          response.body[3].should.have.property('program');
-          response.body[3].program.should.equal('FE');
-          response.body[3].should.have.property('enrolled');
-          response.body[3].enrolled.should.equal(true);
-          done();
-        });
-      });
-    });
-
-    it('should not create a record with missing data', (done) => {
-      chai.request(server)
-      .post('/api/v1/students')
-      .send({
-        lastname: 'Knuth',
-        program: 'FE'
-      })
-      .end((err, response) => {
-        response.should.have.status(422);
-        response.body.error.should.equal('You are missing data!');
-        done();
-      });
-    });
-  });
 });
