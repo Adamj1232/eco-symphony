@@ -34,7 +34,7 @@ app.get('/:link', (req, res) => {
         ;
         res.redirect(301, fullLink[0].url)
       } else {
-        res.status(404).json({
+        res.sendStatus(404).json({
           error: 'Doesn\'t seem to be anything here'
         })
       }
@@ -136,3 +136,5 @@ app.delete('/api/v1/links/:id', (req, res) => {
 app.listen(app.get('port'), () => {  //GET request is sent to this root/location and defining the response sent
   console.log(`${app.locals.title} is running on ${app.get('port')}.`) //logging what port the app is running at with the name - 'app.locals.title'...logged in terminal
 });
+
+module.exports = app
