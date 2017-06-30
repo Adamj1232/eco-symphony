@@ -22,6 +22,31 @@ app.get('/', (request, response) => {
   response.sendFile('index.html')
 });
 
+app.get('/:link', (req, res) => {
+  const link = req.params.link
+  database('links').where('name', `localhost:3000/${link}`).select()
+    .then((cleanLink) => {
+      return database('links')
+            .where('name', `localhost:3000/${link}`)
+            .select('url')
+    .then((fullLink) => {
+      if(fullLink) {
+        ;
+        res.redirect(301, fullLink[0].url)
+      } else {
+        res.status(404).json({
+          error: 'Doesn\'t seem to be anything here'
+        })
+      }
+    })
+  })
+  .catch(() => {
+    res.status(500).json({
+      error: 'Something went horribly wrong.'
+    })
+  })
+})
+
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
@@ -29,7 +54,7 @@ app.get('/api/v1/links', (req, res) => {
         res.status(200).json(links)
       } else {
         res.status(404).json({
-          error: 'link shit\'s not here bro'
+          error: 'That doesn\'t seem to exist'
         })
       }
     })
@@ -53,8 +78,8 @@ app.post('/api/v1/links', (req, res) => {
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
       return res.status(422).json({
-        error: `yo bro, need a url and a folder name.
-        you sent ${link}. nice job`
+        error: `Yo, need a url and a folder name.
+        You sent ${link}.`
       })
     }
   }
