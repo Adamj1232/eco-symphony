@@ -48,6 +48,9 @@ function renderLink(link, id) {
     deleteIdea(e, newDiv, 'url')
   })
 
+  let clickTitle = document.createElement('h6')
+  clickTitle.innerText = 'Times visited'
+
   let newUrlTitle = document.createElement('h5')
   let newUrl = document.createElement('a')
   newUrl.setAttribute('href', newLink.url)
@@ -56,6 +59,7 @@ function renderLink(link, id) {
 
   let newShortUrl = document.createElement('a')
   newShortUrl.setAttribute('href', `${newLink.url}`)
+  newShortUrl.setAttribute('class', 'short-link-clicks')
   newShortUrl.setAttribute('target', '_blank')
   newShortUrl.addEventListener('click', (e) => {
     incrementClickShortURL(newDiv.id)
@@ -69,6 +73,7 @@ function renderLink(link, id) {
 
   newDiv.appendChild(newUrl)
   newDiv.appendChild(newShortUrl)
+  newDiv.appendChild(clickTitle)
   newDiv.appendChild(newClicks)
   newDiv.appendChild(deleteBtn)
   document.getElementById('links').appendChild(newDiv)

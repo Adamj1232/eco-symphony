@@ -62,10 +62,11 @@ input {
 
 #folders {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 33%;
 }
 
 #selected-folder {
@@ -73,9 +74,9 @@ input {
 }
 
 #selected-folder-container {
-  display: flex;
+  /*display: flex;*/
   margin: 0 auto;
-  justify-content: center;
+  /*justify-content: center;*/
 }
 
 #links-and-folders {
@@ -87,21 +88,44 @@ input {
   flex-wrap: wrap;
 }
 
-#folders {
-  display: flex;
-  flex-direction: column;
-  width: 33%;
+.folder-delete-button {
+  background-color: #333333;
+  color: #FFFFFF;
 }
 
 .new-folder {
   padding: 20px;
   background: #DDDDDD;
   width: 50%;
+  margin: 10px;
 }
 
 .link {
   margin: 5px 10px;
   padding: 5px;
   border: 1px #333333 solid;
+  height: 150px;
+  width: 225px;
+}
 
+p {
+  margin: 2px auto 5px;
+}
+
+h5 {
+  color: #ffffff;
+  margin: 2px auto 10px;
+  padding: 10px 0;
+  background-color: #333333;
+  text-decoration: none;
+}
+
+h6 {
+  margin: 10px auto 0;
+}
+
+.short-link-clicks {
+  padding: 10px 0;
+  margin: 15px auto;
+  color: #333333
 }

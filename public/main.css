@@ -112,6 +112,14 @@ h4:hover {
   text-decoration: underline;
 }
 
+h6 {
+  margin: 2px auto;
+}
+
+.link-clicks {
+  margin: 0 auto 5px;
+}
+
 .link {
   width: 200px;
   height: 200px;
