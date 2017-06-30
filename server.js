@@ -31,7 +31,6 @@ app.get('/:link', (req, res) => {
             .select('url')
     .then((fullLink) => {
       if(fullLink) {
-        ;
         res.redirect(301, fullLink[0].url)
       } else {
         res.sendStatus(404).json({
@@ -40,16 +39,15 @@ app.get('/:link', (req, res) => {
       }
     })
   })
-  .catch(() => {
-    res.status(500).json({
-      error: 'Something went horribly wrong.'
-    })
+  .catch((error) => {
+    console.log('error : ', error);
   })
 })
 
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
+      console.log(links);
       if(links.length) {
         res.status(200).json(links)
       } else {
@@ -60,7 +58,7 @@ app.get('/api/v1/links', (req, res) => {
     })
     .catch(() => {
       res.status(500).json({
-        error: 'Something went horribly wrong.'
+        error: 'Soooooomething went horribly wrong.'
       })
     })
 })

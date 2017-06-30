@@ -108,11 +108,11 @@ const saveNewLink = (newUrl) => {
 
 const incrementClickShortURL = (id) => {
   fetch(`/api/v1/links/click/${id}`)
-    .then((link) => {
-      link.json()
-      .then((cleanLink) => {
-        loadLinks()
-        window.open.href = `${cleanLink[0].url}`
-      })
+  .then((link) => {
+    link.json()
+    .then((cleanLink) => {
+      loadLinks()
+      window.open.href = `${cleanLink[0].url}`
     })
+  })
 }

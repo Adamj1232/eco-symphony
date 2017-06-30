@@ -42,6 +42,10 @@ function parseInfo(storedLinks) {
 function createFolder(title) {
   const newFolderName = title
   let newDiv = document.createElement('div')
+  let newContainerDiv = document.createElement('div')
+  let newImgDiv = document.createElement('div')
+  newImgDiv.setAttribute('id', 'folder-img-div')
+  newContainerDiv.setAttribute('class', 'folder-container-div')
   newDiv.setAttribute('class', 'new-folder')
   newDiv.addEventListener('click', () => {
     selectExistingFolder(newDiv)
@@ -63,16 +67,22 @@ function createFolder(title) {
     deleteIdea(e, newDiv, 'folder', newFolderName)
   })
 
-  newDiv.appendChild(newFolderTitle)
-  newDiv.appendChild(deleteBtn)
+  newContainerDiv.appendChild(newFolderTitle)
+  newContainerDiv.appendChild(deleteBtn)
+  newDiv.appendChild(newContainerDiv)
+  newDiv.appendChild(newImgDiv)
   document.getElementById('folders').appendChild(newDiv)
   filteredByDate = ''
 
 }
 
 function selectExistingFolder(location) {
-  const nameOfSelectedFolder = location.firstChild
+  // let imgDiv = document.getElementById('folder-img-div')
+  // imgDiv.setAttribute('class', 'folder-img-div-selected')
+
+  const nameOfSelectedFolder = location.children[0].firstChild
   selectedFolder.innerText = nameOfSelectedFolder.innerText
+
   listLinks()
   filteredByDate = ''
 }
