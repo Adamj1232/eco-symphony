@@ -24,23 +24,23 @@ app.get('/', (request, response) => {
 
 app.get('/:link', (req, res) => {
   const link = req.params.link
-  database('links').where('name', `localhost:3000/${link}`).select()
+  database('links').where('name', link).select()
     .then((cleanLink) => {
       return database('links')
-            .where('name', `localhost:3000/${link}`)
+            .where('name', link)
             .select('url')
     .then((fullLink) => {
-      if(fullLink) {
+      if(fullLink[0]) {
         res.redirect(301, fullLink[0].url)
       } else {
-        res.sendStatus(404).json({
+        res.sendStatus(404).send({
           error: 'Doesn\'t seem to be anything here'
         })
       }
     })
   })
   .catch(() => {
-    res.status(500).json({
+    res.status(500).send({
       error: 'Something went horribly wrong.'
     })
   })
@@ -49,17 +49,16 @@ app.get('/:link', (req, res) => {
 app.get('/api/v1/links', (req, res) => {
   database('links').select()
     .then((links) => {
-      console.log(links);
       if(links.length) {
         res.status(200).json(links)
       } else {
-        res.status(404).json({
+        res.status(404).send({
           error: 'That doesn\'t seem to exist'
         })
       }
     })
     .catch(() => {
-      res.status(500).json({
+      res.status(500).send({
         error: 'Soooooomething went horribly wrong.'
       })
     })
@@ -77,7 +76,7 @@ app.post('/api/v1/links', (req, res) => {
 
   for(let requiredParameter of ['url', 'folder']) {
     if(!link[requiredParameter]) {
-      return res.status(422).json({
+      return res.status(422).send({
         error: `Yo, need a url and a folder name.
         You sent ${link}.`
       })
@@ -89,7 +88,7 @@ app.post('/api/v1/links', (req, res) => {
       res.status(201).json(newLink)
     })
     .catch(error => {
-      res.status(500).json({ error: 'what the hell are you doing?'})
+      res.status(500).send({ error: 'what the hell are you doing?'})
     })
 })
 
