@@ -35,7 +35,7 @@ button {
   background-color: #DDDDDD;
 }
 
-button:hover {
+button:hover:not .folder-delete-button {
   background-color: #d5e0d5;
 }
 
