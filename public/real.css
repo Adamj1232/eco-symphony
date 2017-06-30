@@ -177,11 +177,11 @@ button:hover {
 }
 
 .link {
-  margin: 5px 10px;
+  margin: 5px 15px;
   padding: 5px;
   border: 1px #333333 solid;
-  height: 150px;
-  width: 225px;
+  height: 180px;
+  width: 245px;
 }
 
 p {
