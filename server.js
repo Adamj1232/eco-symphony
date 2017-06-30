@@ -1,7 +1,7 @@
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
-const host = process.env.DOMAIN_ENV || 'jet--fuel.herokuapp.com';
+const host = process.env.DOMAIN_ENV || 'localhost:3000/'
 
 const express = require('express')
 const app = express()
@@ -26,12 +26,15 @@ app.get('/', (request, response) => {
 
 app.get('/:link', (req, res) => {
   const link = req.params.link
+  console.log('LINKLINK', link);
   database('links').where('name', link).select()
     .then((cleanLink) => {
+      console.log('CLEANLINK', cleanLink);
       return database('links')
             .where('name', link)
             .select('url')
     .then((fullLink) => {
+      console.log(fullLink[0]);
       if(fullLink[0]) {
         res.redirect(301, fullLink[0].url)
       } else {
@@ -66,7 +69,7 @@ app.get('/api/v1/links', (req, res) => {
 
 app.post('/api/v1/links', (req, res) => {
   const link = req.body
-  link.name = `${host}/${shortid.generate()}`
+  link.name = `${shortid.generate()}`
 
   if (!link.name) {
     return response.status(422).send({

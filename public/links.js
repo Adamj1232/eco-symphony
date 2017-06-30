@@ -1,5 +1,6 @@
 const addUrlAddress = document.getElementById('add-url-address')
 const addUrlButton = document.getElementById('add-url-button')
+const host = window.location.href
 
 let storedLinks = []
 
@@ -15,6 +16,7 @@ const loadLinks = () => {
   fetch('/api/v1/links').then(res => {
     res.json()
     .then(info => {
+      console.log(info);
       parseInfo(info)
       storedLinks = info
       listLinks()
@@ -58,14 +60,14 @@ function renderLink(link, id) {
   newUrl.appendChild(newUrlTitle)
 
   let newShortUrl = document.createElement('a')
-  newShortUrl.setAttribute('href', `${newLink.url}`)
+  newShortUrl.setAttribute('href', `${window.location.href}${newLink.name}`)
   newShortUrl.setAttribute('class', 'short-link-clicks')
   newShortUrl.setAttribute('target', '_blank')
   newShortUrl.addEventListener('click', (e) => {
     incrementClickShortURL(newDiv.id)
   })
   newShortUrl.setAttribute('href', newLink.url)
-  newShortUrl.innerText = `${newLink.name}`
+  newShortUrl.innerText = `${window.location.href}${newLink.name}`
 
   let newClicks = document.createElement('p')
   newClicks.innerText = `${newLink.clicks}`
