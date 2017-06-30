@@ -34,6 +34,7 @@ function listLinks() {
   })
 }
 
+
 function renderLink(link, id) {
   const newLink = link
   let newDiv = document.createElement('div')

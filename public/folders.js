@@ -77,11 +77,13 @@ function createFolder(title) {
 }
 
 function selectExistingFolder(location) {
-  // let imgDiv = document.getElementById('folder-img-div')
-  // imgDiv.setAttribute('class', 'folder-img-div-selected')
 
   const nameOfSelectedFolder = location.children[0].firstChild
   selectedFolder.innerText = nameOfSelectedFolder.innerText
+  if(nameOfSelectedFolder.innerText === selectedFolder.innerText) {
+    let newImgDiv = document.getElementById('folder-img-div')
+    newImgDiv.setAttribute('id', 'folder-img-selected-div')
+  }
 
   listLinks()
   filteredByDate = ''

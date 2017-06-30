@@ -25,6 +25,18 @@ input {
 h2 {
   margin-bottom: 10px;
   font-size: 1.2em;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 7px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #DDDDDD;
+}
+
+button:hover:not .folder-delete-button {
+  background-color: #d5e0d5;
 }
 
 .nineties {
@@ -95,6 +107,11 @@ h2 {
   flex-wrap: wrap;
 }
 
+#what-year-is-it {
+  margin-right: 10px;
+  margin-top: 0;
+}
+
 .folder-delete-button {
   background-color: #333333;
   color: #FFFFFF;
@@ -109,6 +126,7 @@ h2 {
   width: 80%;
   margin: 10px;
   border-radius: 10px;
+  border-color: black;
 }
 
 #folder-img-div {
@@ -122,15 +140,34 @@ h2 {
   margin-right: auto;
 }
 
-.folder-img-div-selected {
+.new-folder:hover {
+  background-color: #d5e0d5;
+  border: black;
+  border-color: black;
+}
+
+.new-folder:hover #folder-img-div {
   height: 50px;
   display: flex;
   align-items: center;
   width: 50px;
-  background: #DDDDDD url(./images/folder-open.svg.png) no-repeat center center;
+  background: #d5e0d5 url(./images/folder-open.svg.png) no-repeat center center;
   background-size: contain;
   margin-left: 0px;
   margin-right: auto;
+}
+
+#folder-img-selected-div {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  background: url(./images/folder-open.svg.png) no-repeat center center;
+  background-size: contain;
+}
+
+#folder-img-selected-div:parent {
+  background: #e8e8e8;
 }
 
 .folder-container-div {

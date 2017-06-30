@@ -36,6 +36,7 @@ button {
   background-color: lightgreen;
   font-family: "Comic Sans MS", sans-serif;
   color: red;
+  margin-top: 10px;
 }
 
 #footer {
@@ -99,7 +100,7 @@ button {
 #links {
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
+  width: 65%;
 }
 
 #folders {
@@ -121,7 +122,7 @@ h6 {
 }
 
 .link {
-  width: 200px;
+  width: 250px;
   height: 200px;
   border: 2px solid red;
   margin: 10px;
@@ -139,8 +140,13 @@ h6 {
 }
 
 .new-folder {
-  height: 200px;
-  width: 300px;
+  height: 150px;
+  width: 250px;
   border: 1px solid black;
   margin: 20px;
+}
+
+#what-year-is-it {
+  height: 40px;
+  margin-right: 5px;
 }
