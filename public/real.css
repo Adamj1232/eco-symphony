@@ -33,10 +33,12 @@ button {
   padding: 5px;
   border-radius: 5px;
   background-color: #DDDDDD;
+  font-weight: bold;
 }
 
-button:hover:not .folder-delete-button {
+button:hover {
   background-color: #d5e0d5;
+  color: black;
 }
 
 .nineties {
@@ -108,7 +110,7 @@ button:hover:not .folder-delete-button {
 }
 
 #what-year-is-it {
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: 0;
 }
 
