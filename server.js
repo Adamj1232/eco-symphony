@@ -1,7 +1,7 @@
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
-const host = process.env.DOMAIN_ENV || 'localhost:3000';
+const host = process.env.DOMAIN_ENV || 'jet--fuel.herokuapp.com';
 
 const express = require('express')
 const app = express()
