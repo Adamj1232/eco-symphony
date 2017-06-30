@@ -1,4 +1,4 @@
-module exports =[
+module.exports =[
     {
         id: 50,
         url: "http://www.yahoo.com",
