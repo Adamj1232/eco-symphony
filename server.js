@@ -26,15 +26,12 @@ app.get('/', (request, response) => {
 
 app.get('/:link', (req, res) => {
   const link = req.params.link
-  console.log('LINKLINK', link);
   database('links').where('name', link).select()
     .then((cleanLink) => {
-      console.log('CLEANLINK', cleanLink);
       return database('links')
             .where('name', link)
             .select('url')
     .then((fullLink) => {
-      console.log(fullLink[0]);
       if(fullLink[0]) {
         res.redirect(301, fullLink[0].url)
       } else {
