@@ -42,9 +42,7 @@ app.get('/:link', (req, res) => {
     })
   })
   .catch(() => {
-    res.status(500).send({
-      error: 'Something went horribly wrong.'
-    })
+    res.status(500)
   })
 })
 
