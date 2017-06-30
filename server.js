@@ -39,8 +39,10 @@ app.get('/:link', (req, res) => {
       }
     })
   })
-  .catch((error) => {
-    console.log('error : ', error);
+  .catch(() => {
+    res.status(500).json({
+      error: 'Something went horribly wrong.'
+    })
   })
 })
 
