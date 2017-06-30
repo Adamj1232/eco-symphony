@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
   return knex('links').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('links').insert([
         {id: 1, colName: 'rowValue1'},
         {id: 2, colName: 'rowValue2'},
         {id: 3, colName: 'rowValue3'}
@@ -15,9 +15,13 @@ exports.seed = function(knex, Promise) {
 
 const createLink = (knex, link) => {
   return knex('links').insert({
+    id: link.id,
     url: link.url,
     name: link.name,
-    
+    clicks: link.clicks,
+    folder: link.folder,
+    created_at: link.created_at,
+    updated_at: link.updated_at
   }, 'id')
 
     return Promise.all(footnotePromises);
