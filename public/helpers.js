@@ -7,6 +7,7 @@ const stylin = document.getElementById('stylin')
 
 const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
+const urlInput = document.getElementById('add-url-address')
 
 function deleteIdea(e, div, deleteType, folderName){
   const id = e.path[1].id
@@ -50,6 +51,9 @@ filterByDate.addEventListener('click', function() {
   listLinks()
 })
 
+urlInput.addEventListener('click', function(){
+  document.getElementById('add-url-address').value = 'http://'
+})
 
 
 filterByVisits.addEventListener('click', function() {
