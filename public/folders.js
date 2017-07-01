@@ -44,7 +44,7 @@ function createFolder(title) {
   let newDiv = document.createElement('div')
   let newContainerDiv = document.createElement('div')
   let newImgDiv = document.createElement('div')
-  newImgDiv.setAttribute('id', 'folder-img-div')
+  newImgDiv.setAttribute('class', 'folder-img-div')
   newContainerDiv.setAttribute('class', 'folder-container-div')
   newDiv.setAttribute('class', 'new-folder')
   newDiv.addEventListener('click', () => {
@@ -61,6 +61,7 @@ function createFolder(title) {
   deleteBtn.setAttribute('class', 'folder-delete-button')
 
   let newFolderTitle = document.createElement('h2')
+  newFolderTitle.setAttribute('class', 'folder-name')
   newFolderTitle.innerText = newFolderName
 
   deleteBtn.addEventListener('click', (e) => {
@@ -79,10 +80,17 @@ function createFolder(title) {
 function selectExistingFolder(location) {
 
   const nameOfSelectedFolder = location.children[0].firstChild
+  const folderElements = document.getElementsByClassName('folder-name')
+  
   selectedFolder.innerText = nameOfSelectedFolder.innerText
-  if(nameOfSelectedFolder.innerText === selectedFolder.innerText) {
-    let newImgDiv = document.getElementById('folder-img-div')
-    newImgDiv.setAttribute('id', 'folder-img-selected-div')
+
+  for (var i = 0; i < folderElements.length; i++) {
+
+    if( folderElements[i].innerText === nameOfSelectedFolder.innerText){
+      folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
+    } else {
+      folderElements[i].parentNode.parentNode.setAttribute('class', 'new-folder')
+    }
   }
 
   listLinks()

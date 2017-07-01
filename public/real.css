@@ -131,7 +131,11 @@ button:hover {
   border-color: black;
 }
 
-#folder-img-div {
+.selected {
+  background: #d5e0d5;
+}
+
+.folder-img-div {
   height: 50px;
   display: flex;
   align-items: center;
@@ -148,7 +152,7 @@ button:hover {
   border-color: black;
 }
 
-.new-folder:hover #folder-img-div {
+.new-folder:hover .folder-img-div {
   height: 50px;
   display: flex;
   align-items: center;
@@ -159,12 +163,12 @@ button:hover {
   margin-right: auto;
 }
 
-#folder-img-selected-div {
+.selected .folder-img-div {
   height: 50px;
   display: flex;
   align-items: center;
   width: 50px;
-  background: url(./images/folder-open.svg.png) no-repeat center center;
+  background: #d5e0d5 url(./images/folder-open.svg.png) no-repeat center center;
   background-size: contain;
 }
 
