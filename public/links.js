@@ -35,6 +35,12 @@ function listLinks() {
   })
 }
 
+function isUrlValid(userInput) {
+  var res = userInput.match(/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  return res == null ? false : true;
+}
+
+
 
 function renderLink(link, id) {
   const newLink = link
@@ -82,6 +88,7 @@ function renderLink(link, id) {
 }
 
 addUrlButton.addEventListener('click', function() {
+  if(isUrlValid(addUrlAddress.value)){
   const newUrl = {
                   url: addUrlAddress.value,
                   name: addUrlAddress.value,
@@ -92,6 +99,11 @@ addUrlButton.addEventListener('click', function() {
   saveNewLink(newUrl)
   addFolderTitle.value = ''
   addUrlAddress.value = ''
+  } else {
+    const errorNotice = document.getElementById('error-notice')
+    errorNotice.innerHTML = 'The URL Entered is Invalid, Please Try Again'
+    console.log('url is not valid');
+  }
 })
 
 const saveNewLink = (newUrl) => {

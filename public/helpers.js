@@ -1,13 +1,14 @@
 const whatYearIsIt = document.getElementById('what-year-is-it')
-
-let filteredByDate = ''
-let filteredByClicks = ''
-
 const stylin = document.getElementById('stylin')
-
 const filterByDate = document.getElementById('filter-by-date')
 const filterByVisits = document.getElementById('filter-by-visits')
 const urlInput = document.getElementById('add-url-address')
+const filterDateArrow = document.getElementById('date-arrow')
+const filterClicksArrow = document.getElementById('clicks-arrow')
+// const selectedFolder = document.getElementById('selected-folder')
+
+let filteredDate = false
+let filteredClicks = false
 
 function deleteIdea(e, div, deleteType, folderName){
   const id = e.path[1].id
@@ -42,13 +43,20 @@ function sortLinks(sortType) {
 }
 
 filterByDate.addEventListener('click', function() {
+  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link in"){
+    if(filteredDate === false){
+      filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
+      filterClicksArrow.setAttribute('class', 'fa fa-sort'),
+      filteredDate = true
+      sortLinks('updated_at')
+    } else {
+      filteredDate = false
+      storedLinks.reverse(),
+      filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-down')
+    }
 
-  filteredByDate === '' ?
-    filteredByDate = 'clicked' && sortLinks('updated_at')
-    :
-    filteredByDate = 'un-clicked' && storedLinks.reverse()
-
-  listLinks()
+    listLinks()
+  }
 })
 
 urlInput.addEventListener('click', function(){
@@ -57,13 +65,19 @@ urlInput.addEventListener('click', function(){
 
 
 filterByVisits.addEventListener('click', function() {
-
-  filteredByClicks === '' ?
-    filteredByClicks = 'clicked' && sortLinks('clicks')
-    :
-    filteredByClicks = 'un-clicked' && storedLinks.reverse()
-
-  listLinks()
+  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link in"){
+    if(filteredClicks === false) {
+      filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
+      filterDateArrow.setAttribute('class', 'fa fa-sort'),
+      filteredClicks = true,
+      sortLinks('clicks')
+    } else {
+      filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-down'),
+      filteredClicks = false,
+      storedLinks.reverse()
+    }
+    listLinks()
+  }
 })
 
 

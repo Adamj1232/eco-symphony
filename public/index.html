@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
     <link id="stylin" rel="stylesheet" type="text/css" href="real.css"/>
     <link rel="shortcut icon" href="./images/jet.ico" type="image/x-icon">
+    <script src="https://use.fontawesome.com/c1dfb14235.js"></script>
   </head>
   <body>
     <span id="title">
@@ -18,6 +19,7 @@
       </h1>
       <img class="nineties" src="./images/plane.gif">
     </span>
+    <h3 id='error-notice'></h3>
     <section class='input-fields'>
       <section class="folder-input-section">
         <input id="add-folder-title" class="input" type="text" placeholder="Folder Title"/>
@@ -28,8 +30,8 @@
         <button id="add-url-button">Add URL</button>
       </section>
     <section class='filter-buttons'>
-      <button id="filter-by-date">Filter By Date</button>
-      <button id="filter-by-visits">Filter By Visits</button>
+      <button id="filter-by-date"><i id='date-arrow' class="fa fa-sort" aria-hidden="true"></i>Filter By Date</button>
+      <button id="filter-by-visits"><i id='clicks-arrow' class="fa fa-sort" aria-hidden="true"></i>Filter By Visits</button>
     </section>
     <button id="what-year-is-it">Time Travel</button>
   </section>

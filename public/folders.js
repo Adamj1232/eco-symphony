@@ -2,6 +2,7 @@ const addFolderTitle = document.getElementById('add-folder-title')
 const addFolderButton = document.getElementById('add-folder-button')
 const selectedFolder = document.getElementById('selected-folder')
 const selectedFolderListener = document.getElementsByClassName('new-folder')
+const selectedFolderTitle = document.getElementById('selected-folder-title')
 
 const folderArray = []
 let idCounter = 0
@@ -81,7 +82,8 @@ function selectExistingFolder(location) {
 
   const nameOfSelectedFolder = location.children[0].firstChild
   const folderElements = document.getElementsByClassName('folder-name')
-  
+
+  selectedFolderTitle.setAttribute('style', 'visibility: visible')
   selectedFolder.innerText = nameOfSelectedFolder.innerText
 
   for (var i = 0; i < folderElements.length; i++) {
