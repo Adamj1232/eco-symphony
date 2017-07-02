@@ -46,39 +46,30 @@ button:hover {
   color: black;
 }
 
-.nineties {
-  display: none;
+p {
+  margin: 2px auto 5px;
 }
 
-.real-logo {
-  height: 60px;
-  margin: 0 10px;
+h5 {
+  color: #ffffff;
+  margin: 2px auto 10px;
+  padding: 10px 0;
+  background-color: #333333;
+  text-decoration: none;
 }
 
-.real {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h6 {
+  margin: 10px auto 0;
 }
 
-.input-fields {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  border: none;
 }
 
-.folder-input-section {
-  margin-right: 30px;
-}
-
-.url-input-section {
-  margin-right: 30px;
-}
-
-.filter-buttons {
-  margin-right: 30px;
-}
 
 #filter-by-date {
   padding: 7px 9px;
@@ -123,6 +114,44 @@ button:hover {
 #what-year-is-it {
   margin-right: 20px;
   margin-top: 0;
+}
+
+#folder-img-selected-div:parent {
+  background: #e8e8e8;
+}
+
+.nineties {
+  display: none;
+}
+
+.real-logo {
+  height: 60px;
+  margin: 0 10px;
+}
+
+.real {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-fields {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.folder-input-section {
+  margin-right: 30px;
+}
+
+.url-input-section {
+  margin-right: 30px;
+}
+
+.filter-buttons {
+  margin-right: 30px;
 }
 
 .folder-delete-button {
@@ -190,10 +219,6 @@ button:hover {
   background-size: contain;
 }
 
-#folder-img-selected-div:parent {
-  background: #e8e8e8;
-}
-
 .folder-container-div {
   width: 200px;
 }
@@ -202,24 +227,8 @@ button:hover {
   margin: 5px 15px;
   padding: 5px;
   border: 1px #333333 solid;
-  height: 165px;
+  height: 185px;
   width: 290px;
-}
-
-p {
-  margin: 2px auto 5px;
-}
-
-h5 {
-  color: #ffffff;
-  margin: 2px auto 10px;
-  padding: 10px 0;
-  background-color: #333333;
-  text-decoration: none;
-}
-
-h6 {
-  margin: 10px auto 0;
 }
 
 .short-link-clicks {
@@ -227,12 +236,4 @@ h6 {
   margin: 15px auto;
   color: #333333;
   font-size: 1.2em;
-}
-
-i {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  border: none;
 }
