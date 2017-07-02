@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static(`${__dirname}/public`))
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.locals.links = {}
 
