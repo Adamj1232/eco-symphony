@@ -15,11 +15,13 @@ h1 {
 
 input {
   outline: none;
-  border-radius: 3px;
-  padding: 3px;
-  height: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  height: 31px;
   border: 1px solid #BDC3C7;
-  width: 180px;
+  width: 220px;
+  font-family: sans-serif;
+  font-size: 1em;
 }
 
 h2 {
@@ -29,11 +31,14 @@ h2 {
 }
 
 button {
-  margin-top: 7px;
-  padding: 5px;
+  padding: 7px;
   border-radius: 5px;
-  background-color: #DDDDDD;
   font-weight: bold;
+  outline: none;
+  background-color: transparent;
+  border-color: #558C6D;
+  border-style: solid;
+  margin-left: 5px;
 }
 
 button:hover {
@@ -63,10 +68,6 @@ button:hover {
   align-items: center;
 }
 
-.input {
-  height: 20px;
-}
-
 .folder-input-section {
   margin-right: 30px;
 }
@@ -77,6 +78,11 @@ button:hover {
 
 .filter-buttons {
   margin-right: 30px;
+}
+
+#filter-by-date {
+  padding: 7px 9px;
+  margin-right: 5px;
 }
 
 #folders {
@@ -90,6 +96,11 @@ button:hover {
 
 #selected-folder {
   margin-left: 5px;
+  font-size: 1.2em;
+}
+
+#selected-folder-title {
+  visibility: hidden;
 }
 
 #selected-folder-container {
@@ -117,22 +128,29 @@ button:hover {
 .folder-delete-button {
   background-color: #333333;
   color: #FFFFFF;
+  margin-top: 10px;
+  border-color: #635f5d;
 }
 
 .new-folder {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding: 25px 20px 20px;
+  padding: 10px 20px 5px;
   background: #DDDDDD;
   width: 250px;
   margin: 10px;
   border-radius: 10px;
-  border-color: black;
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
 }
 
 .selected {
   background: #d5e0d5;
+  -webkit-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.75);
 }
 
 .folder-img-div {
@@ -184,8 +202,8 @@ button:hover {
   margin: 5px 15px;
   padding: 5px;
   border: 1px #333333 solid;
-  height: 180px;
-  width: 245px;
+  height: 165px;
+  width: 290px;
 }
 
 p {
@@ -207,5 +225,14 @@ h6 {
 .short-link-clicks {
   padding: 10px 0;
   margin: 15px auto;
-  color: #333333
+  color: #333333;
+  font-size: 1.2em;
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  border: none;
 }
