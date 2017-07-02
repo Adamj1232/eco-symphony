@@ -7,7 +7,6 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const shortid = require('shortid');
-const favicon = require('serve-favicon');
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Jet Fuel';
