@@ -67,7 +67,9 @@ function createFolder(title) {
 
   deleteBtn.addEventListener('click', (e) => {
     deleteIdea(e, newDiv, 'folder', newFolderName)
-    selectedFolder.innerText = 'none'
+    console.log(e.target);
+    selectedFolder.innerHTML = 'none'
+    console.log(selectedFolder.innerHTML);
   })
 
   newContainerDiv.appendChild(newFolderTitle)
@@ -89,10 +91,15 @@ function selectExistingFolder(location) {
 
   for (var i = 0; i < folderElements.length; i++) {
 
-    if( folderElements[i].innerText === nameOfSelectedFolder.innerText){
+    let matchCount = 0
+    if( folderElements[i].innerText === nameOfSelectedFolder.innerText ){
       folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
+      matchCount++
     } else {
       folderElements[i].parentNode.parentNode.setAttribute('class', 'new-folder')
+    }
+    if (matchCount === 0){
+      selectedFolder.innerText = 'Please Add or Select a Folder to Create a Shortened Link Within'
     }
   }
 
