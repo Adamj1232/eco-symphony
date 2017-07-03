@@ -16,7 +16,6 @@ const loadLinks = () => {
   fetch('/api/v1/links').then(res => {
     res.json()
     .then(info => {
-      console.log(info);
       parseInfo(info)
       storedLinks = info
       listLinks()
@@ -40,8 +39,6 @@ function isUrlValid(userInput) {
   return res == null ? false : true;
 }
 
-
-
 function renderLink(link, id) {
   const newLink = link
   let newDiv = document.createElement('div')
@@ -51,7 +48,6 @@ function renderLink(link, id) {
   let deleteBtn = document.createElement('button')
   deleteBtn.innerText = 'Delete'
   deleteBtn.setAttribute('class', 'folder-delete-button')
-  //switch css class to link-delete-button
   deleteBtn.addEventListener('click', (e) => {
     deleteIdea(e, newDiv, 'url')
   })
@@ -87,10 +83,23 @@ function renderLink(link, id) {
   document.getElementById('links').appendChild(newDiv)
 }
 
+function correctUrl(url) {
+  let urlCheck = url
+  let httpRegEx = /http:\/\/+/i
+  let urlCheckResult = urlCheck.match(httpRegEx)
+
+  if(urlCheckResult == null) {
+    let completeUrl = "http://" + urlCheck
+    return completeUrl
+  } else {
+    return urlCheck
+  }
+}
+
 addUrlButton.addEventListener('click', function() {
   if(isUrlValid(addUrlAddress.value)){
   const newUrl = {
-                  url: addUrlAddress.value,
+                  url: correctUrl(addUrlAddress.value),
                   name: addUrlAddress.value,
                   folder: folderCheck(addFolderTitle.value),
                   clicks: 0
