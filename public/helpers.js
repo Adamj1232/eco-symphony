@@ -37,6 +37,7 @@ function deleteIdea(e, div, deleteType, folderName){
     loadLinks()
   })
   div.parentNode.removeChild(deleteDiv)
+  setTimeout(function(){ selectedFolderTag.innerHTML  = 'none' }, 10)
 }
 
 function sortLinks(sortType) {
