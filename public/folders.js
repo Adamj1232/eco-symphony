@@ -8,6 +8,7 @@ const folderArray = []
 let idCounter = 0
 
 addFolderButton.addEventListener('click', function() {
+  selectExistingFolder(addFolderTitle.value, 'newFolder')
   evaluateFolder()
 })
 
@@ -15,9 +16,10 @@ function evaluateFolder() {
   if(addFolderTitle.value &&
     folderArray.indexOf(addFolderTitle.value) === -1) {
 
-    createFolder(addFolderTitle.value)
+    createFolder(addFolderTitle.value, 'new')
     selectedFolder.innerText = addFolderTitle.value
     addFolderTitle.value = ''
+    selectedFolderTitle.setAttribute('style', 'visibility: visible')
   }
 }
 
@@ -34,25 +36,29 @@ function parseInfo(storedLinks) {
   if(storedLinks.length) {
     storedLinks.forEach(link => {
       if(folderArray.indexOf(link.folder) === -1){
-        createFolder(link.folder)
+        createFolder(link.folder, 'existing')
       }
     })
   }
 }
 
-function createFolder(title) {
+function createFolder(title, type) {
   const newFolderName = title
   let newDiv = document.createElement('div')
   let newContainerDiv = document.createElement('div')
   let newImgDiv = document.createElement('div')
   newImgDiv.setAttribute('class', 'folder-img-div')
   newContainerDiv.setAttribute('class', 'folder-container-div')
-  newDiv.setAttribute('class', 'new-folder')
+  type === 'new' ?
+    newDiv.setAttribute('class', 'new-folder selected')
+  :
+    newDiv.setAttribute('class', 'new-folder');
+
   newDiv.addEventListener('click', () => {
-    selectExistingFolder(newDiv)
+    selectExistingFolder(newDiv, 'existing')
   })
 
-  folderArray.push(newFolderName)
+  folderArray.unshift(newFolderName)
 
   newDiv.id = idCounter
   idCounter++
@@ -67,42 +73,41 @@ function createFolder(title) {
 
   deleteBtn.addEventListener('click', (e) => {
     deleteIdea(e, newDiv, 'folder', newFolderName)
-    console.log(e.target);
-    selectedFolder.innerHTML = 'none'
-    console.log(selectedFolder.innerHTML);
   })
 
   newContainerDiv.appendChild(newFolderTitle)
   newContainerDiv.appendChild(deleteBtn)
   newDiv.appendChild(newContainerDiv)
   newDiv.appendChild(newImgDiv)
-  document.getElementById('folders').appendChild(newDiv)
+  document.getElementById('folders').prepend(newDiv)
   filteredByDate = ''
-  selectedFolderTitle.setAttribute('style', 'visibility: visible')
 }
 
-function selectExistingFolder(location) {
-
-  const nameOfSelectedFolder = location.children[0].firstChild
+function selectedFolderStyle(nameOfSelectedFolder){
   const folderElements = document.getElementsByClassName('folder-name')
+
+  for (var i = 0; i < folderElements.length; i++) {
+    if( folderElements[i].innerText === nameOfSelectedFolder.innerText ){
+      folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
+    } else {
+      folderElements[i].parentNode.parentNode.setAttribute('class', 'new-folder')
+    }
+  }
+}
+
+function selectExistingFolder(location, folderType) {
+
+  let nameOfSelectedFolder
+  if(folderType === 'newFolder'){
+    nameOfSelectedFolder = location
+  } else  {
+    nameOfSelectedFolder = location.children[0].firstChild
+  }
 
   selectedFolderTitle.setAttribute('style', 'visibility: visible')
   selectedFolder.innerText = nameOfSelectedFolder.innerText
 
-  for (var i = 0; i < folderElements.length; i++) {
-
-    let matchCount = 0
-    if( folderElements[i].innerText === nameOfSelectedFolder.innerText ){
-      folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
-      matchCount++
-    } else {
-      folderElements[i].parentNode.parentNode.setAttribute('class', 'new-folder')
-    }
-    if (matchCount === 0){
-      selectedFolder.innerText = 'Please Add or Select a Folder to Create a Shortened Link Within'
-    }
-  }
-
+  selectedFolderStyle(nameOfSelectedFolder)
   listLinks()
   filteredByDate = ''
 }

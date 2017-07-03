@@ -16,12 +16,9 @@ function deleteIdea(e, div, deleteType, folderName){
   let fetchUrl = ''
 
   if(deleteType == 'folder') {
-    // console.log(selectedFolderTag.innerHTML, 'folder getting deleted');
     selectedFolderTag.innerHTML = 'none'
-    document.getElementById('selected-folder').innerHTML='none'
     const removeFolder = folderArray.indexOf(folderName)
     folderArray.splice(removeFolder, 1)
-        // console.log(selectedFolderTag.innerHTML, 'folder getting deleted');
   }
 
   deleteType === 'url' ?
@@ -46,7 +43,7 @@ function sortLinks(sortType) {
 }
 
 filterByDate.addEventListener('click', function() {
-  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link in"){
+  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
     if(filteredDate === false){
       filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
       filterClicksArrow.setAttribute('class', 'fa fa-sort'),
@@ -62,10 +59,9 @@ filterByDate.addEventListener('click', function() {
   }
 })
 
-urlInput.addEventListener('focus', function(){
-  document.getElementById('add-url-address').value = 'http://'
-})
-
+// urlInput.addEventListener('focus', function(){
+//   document.getElementById('add-url-address').value = 'http://'
+// })
 
 filterByVisits.addEventListener('click', function() {
   if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
@@ -82,7 +78,6 @@ filterByVisits.addEventListener('click', function() {
     listLinks()
   }
 })
-
 
 
 whatYearIsIt.addEventListener('click', function() {
