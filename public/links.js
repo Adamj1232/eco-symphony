@@ -35,7 +35,7 @@ function listLinks() {
 }
 
 function isUrlValid(userInput) {
-  var res = userInput.match(/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  var res = userInput.match(/^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
   return res == null ? false : true;
 }
 
@@ -104,7 +104,6 @@ addUrlButton.addEventListener('click', function() {
                   folder: folderCheck(addFolderTitle.value),
                   clicks: 0
                 }
-                console.log(newUrl);
   saveNewLink(newUrl)
   addFolderTitle.value = ''
   addUrlAddress.value = ''
