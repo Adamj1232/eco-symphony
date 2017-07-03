@@ -5,7 +5,7 @@ const filterByVisits = document.getElementById('filter-by-visits')
 const urlInput = document.getElementById('add-url-address')
 const filterDateArrow = document.getElementById('date-arrow')
 const filterClicksArrow = document.getElementById('clicks-arrow')
-// const selectedFolder = document.getElementById('selected-folder')
+const selectedFolderTag = document.getElementById('selected-folder')
 
 let filteredDate = false
 let filteredClicks = false
@@ -16,9 +16,12 @@ function deleteIdea(e, div, deleteType, folderName){
   let fetchUrl = ''
 
   if(deleteType == 'folder') {
-    selectedFolder.innerText = 'none'
+    console.log(selectedFolderTag.innerHTML, 'folder getting deleted');
+    selectedFolderTag.innerHTML = 'none'
+    document.getElementById('selected-folder').innerHTML='none'
     const removeFolder = folderArray.indexOf(folderName)
     folderArray.splice(removeFolder, 1)
+        console.log(selectedFolderTag.innerHTML, 'folder getting deleted');
   }
 
   deleteType === 'url' ?
@@ -59,7 +62,7 @@ filterByDate.addEventListener('click', function() {
   }
 })
 
-urlInput.addEventListener('click', function(){
+urlInput.addEventListener('focus', function(){
   document.getElementById('add-url-address').value = 'http://'
 })
 
