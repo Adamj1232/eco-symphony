@@ -12,7 +12,7 @@ Try [JetFuel](http://jet--fuel.herokuapp.com/)
 
 ## Project Screen Shot(s)
 
-![](http://recordit.co/Y69YHvMUPn)   
+![](http://recordit.co/Y69YHvMUPn.gif)   
 
 ## Installation and Setup Instructions
 
