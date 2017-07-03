@@ -67,6 +67,7 @@ function createFolder(title) {
 
   deleteBtn.addEventListener('click', (e) => {
     deleteIdea(e, newDiv, 'folder', newFolderName)
+    selectedFolder.innerText = 'none'
   })
 
   newContainerDiv.appendChild(newFolderTitle)
@@ -75,7 +76,7 @@ function createFolder(title) {
   newDiv.appendChild(newImgDiv)
   document.getElementById('folders').appendChild(newDiv)
   filteredByDate = ''
-
+  selectedFolderTitle.setAttribute('style', 'visibility: visible')
 }
 
 function selectExistingFolder(location) {

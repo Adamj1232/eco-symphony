@@ -38,7 +38,7 @@ button {
   background-color: transparent;
   border-color: #558C6D;
   border-style: solid;
-  margin-left: 5px;
+  margin: 10px 0 0 10px;
 }
 
 button:hover {
@@ -72,8 +72,7 @@ i {
 
 
 #filter-by-date {
-  padding: 7px 9px;
-  margin-right: 5px;
+  padding: 7px 10px;
 }
 
 #folders {
@@ -113,7 +112,6 @@ i {
 
 #what-year-is-it {
   margin-right: 20px;
-  margin-top: 0;
 }
 
 #folder-img-selected-div:parent {
