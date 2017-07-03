@@ -97,16 +97,18 @@ function correctUrl(url) {
 }
 
 addUrlButton.addEventListener('click', function() {
-  if(isUrlValid(addUrlAddress.value)){
-  const newUrl = {
-                  url: correctUrl(addUrlAddress.value),
-                  name: addUrlAddress.value,
-                  folder: folderCheck(addFolderTitle.value),
-                  clicks: 0
-                }
-  saveNewLink(newUrl)
-  addFolderTitle.value = ''
-  addUrlAddress.value = ''
+  const correctedUrl = correctUrl(addUrlAddress.value)
+  if(isUrlValid(correctedUrl)){
+    const newUrl = {
+                    url: correctedUrl,
+                    name: addUrlAddress.value,
+                    folder: folderCheck(addFolderTitle.value),
+                    clicks: 0
+                  }
+
+    saveNewLink(newUrl)
+    addFolderTitle.value = ''
+    addUrlAddress.value = ''
   } else {
     const errorNotice = document.getElementById('error-notice')
     errorNotice.innerHTML = 'The URL Entered is Invalid, Please Try Again'
