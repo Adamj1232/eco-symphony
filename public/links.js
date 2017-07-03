@@ -13,7 +13,7 @@ let storedLinks = []
 // id: ''}
 
 const loadLinks = () => {
-  fetch('/api/v1/links').then(res => {
+  fetch('/api/v1/links').then( res => {
     res.json()
     .then(info => {
       parseInfo(info)
@@ -27,7 +27,7 @@ loadLinks()
 
 function listLinks() {
   document.getElementById('links').innerHTML = ''
-  storedLinks.forEach(link => {
+  storedLinks.forEach( link => {
     if(selectedFolder.innerText == link.folder) {
       renderLink(link, link.id)
     }
@@ -96,7 +96,7 @@ function correctUrl(url) {
   }
 }
 
-addUrlButton.addEventListener('click', function() {
+addUrlButton.addEventListener('click', () => {
   const correctedUrl = correctUrl(addUrlAddress.value)
   if(isUrlValid(correctedUrl)){
     const newUrl = {

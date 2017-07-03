@@ -7,7 +7,7 @@ const selectedFolderTitle = document.getElementById('selected-folder-title')
 const folderArray = []
 let idCounter = 0
 
-addFolderButton.addEventListener('click', function() {
+addFolderButton.addEventListener('click', () => {
   selectExistingFolder(addFolderTitle.value, 'newFolder')
   evaluateFolder()
 })
