@@ -46,7 +46,7 @@ function sortLinks(sortType) {
   })
 }
 
-filterByDate.addEventListener('click', function() {
+filterByDate.addEventListener('click', () => {
   if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
     if(filteredDate === false){
       filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
@@ -67,7 +67,7 @@ filterByDate.addEventListener('click', function() {
 //   document.getElementById('add-url-address').value = 'http://'
 // })
 
-filterByVisits.addEventListener('click', function() {
+filterByVisits.addEventListener('click', () => {
   if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
     if(filteredClicks === false) {
       filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
@@ -84,7 +84,7 @@ filterByVisits.addEventListener('click', function() {
 })
 
 
-whatYearIsIt.addEventListener('click', function() {
+whatYearIsIt.addEventListener('click', () => {
   if(stylin.getAttribute('href') === 'main.css') {
     stylin.setAttribute('href', 'real.css')
   } else if (stylin.getAttribute('href') === 'real.css') {
