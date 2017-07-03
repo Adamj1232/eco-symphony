@@ -8,7 +8,6 @@ const folderArray = []
 let idCounter = 0
 
 addFolderButton.addEventListener('click', () => {
-  selectExistingFolder(addFolderTitle.value, 'newFolder')
   evaluateFolder()
 })
 
@@ -20,6 +19,8 @@ function evaluateFolder() {
     selectedFolder.innerText = addFolderTitle.value
     addFolderTitle.value = ''
     selectedFolderTitle.setAttribute('style', 'visibility: visible')
+  } else {
+    selectedFolder.innerText = 'Folder Already Exists'
   }
 }
 
@@ -49,6 +50,7 @@ function createFolder(title, type) {
   let newImgDiv = document.createElement('div')
   newImgDiv.setAttribute('class', 'folder-img-div')
   newContainerDiv.setAttribute('class', 'folder-container-div')
+
   type === 'new' ?
     newDiv.setAttribute('class', 'new-folder selected')
   :
@@ -82,11 +84,16 @@ function createFolder(title, type) {
   newDiv.appendChild(newImgDiv)
   document.getElementById('folders').prepend(newDiv)
   filteredByDate = ''
+
+  const foldersToStyle = document.getElementsByClassName('folder-name')
+  for (var i = 1; i < foldersToStyle.length; i++) {
+    foldersToStyle[i].parentNode.parentNode.setAttribute('class', 'new-folder')
+  }
 }
 
 function selectedFolderStyle(nameOfSelectedFolder){
   const folderElements = document.getElementsByClassName('folder-name')
-
+  console.log(nameOfSelectedFolder);
   for (var i = 0; i < folderElements.length; i++) {
     if( folderElements[i].innerText === nameOfSelectedFolder.innerText ){
       folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
