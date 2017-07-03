@@ -73,6 +73,7 @@ function createFolder(title, type) {
 
   deleteBtn.addEventListener('click', (e) => {
     deleteIdea(e, newDiv, 'folder', newFolderName)
+    e.stopPropagation();
   })
 
   newContainerDiv.appendChild(newFolderTitle)

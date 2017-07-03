@@ -16,9 +16,12 @@ function deleteIdea(e, div, deleteType, folderName){
   let fetchUrl = ''
 
   if(deleteType == 'folder') {
-    selectedFolderTag.innerHTML = 'none'
     const removeFolder = folderArray.indexOf(folderName)
+
     folderArray.splice(removeFolder, 1)
+
+    selectedFolderTag.innerHTML = 'Please Add or Select a Folder to Create a Shortened Link Within'
+    selectedFolderTitle.setAttribute('style', 'visibility: hidden')
   }
 
   deleteType === 'url' ?
