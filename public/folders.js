@@ -93,7 +93,6 @@ function createFolder(title, type) {
 
 function selectedFolderStyle(nameOfSelectedFolder){
   const folderElements = document.getElementsByClassName('folder-name')
-  console.log(nameOfSelectedFolder);
   for (var i = 0; i < folderElements.length; i++) {
     if( folderElements[i].innerText === nameOfSelectedFolder.innerText ){
       folderElements[i].parentNode.parentNode.setAttribute('class', 'selected new-folder')
