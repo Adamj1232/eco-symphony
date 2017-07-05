@@ -37,7 +37,9 @@ function deleteIdea(e, div, deleteType, folderName){
     loadLinks()
   })
   div.parentNode.removeChild(deleteDiv)
-  setTimeout(function(){ selectedFolderTag.innerHTML  = 'Please Add or Select a Folder to Create a Shortened Link Within' }, 10)
+  if(deleteType == 'folder'){
+    setTimeout(function(){ selectedFolderTag.innerHTML  = 'Please Add or Select a Folder to Create a Shortened Link Within' }, 10)
+  }
 }
 
 function sortLinks(sortType) {
