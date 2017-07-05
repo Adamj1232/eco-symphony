@@ -48,13 +48,13 @@ describe('API Routes', () => {
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('array');
-        response.body.length.should.equal(4);
+        response.body.length.should.equal(3);
         response.body[0].should.have.property('url');
-        response.body[0].url.should.equal('http://www.yahoo.com');
+        response.body[0].url.should.equal('http://www.google.com');
         response.body[0].should.have.property('name');
-        response.body[0].name.should.equal('localhost:3000/B1B6WMmEb');
+        response.body[0].name.should.equal('B1B05zdNb');
         response.body[0].should.have.property('folder');
-        response.body[0].folder.should.equal("google");
+        response.body[0].folder.should.equal("new");
         done();
       });
     });
