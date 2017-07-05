@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: "Comic Sans MS", sans-serif;
   color: red;
-  /*background-image: url("./images/cloud.jpg");*/
+  background-image: url("./images/cloud.jpg");
 }
 
 h1 {
