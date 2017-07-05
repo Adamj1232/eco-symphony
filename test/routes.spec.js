@@ -67,7 +67,7 @@ describe('API Routes', () => {
         response.body.should.be.a('array');
         response.body.length.should.equal(4);
         response.body[0].should.have.property('url');
-        response.body[0].url.should.equal('http://www.yahoo.com');
+        response.body[0].url.should.equal('http://www.theonion.com');
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('localhost:3000/B1B6WMmEb');
         response.body[0].should.have.property('folder');
