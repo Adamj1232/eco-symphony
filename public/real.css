@@ -5,14 +5,31 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
-
+    
 h1 {
-  background-color: #558c6d;
+  animation: textcolorchange 5s, colorchange 5s ; /* animation-name followed by duration in seconds*/
+  -webkit-animation: textcolorchange 5s, colorchange 5s; /* Chrome and Safari */
+  animation-timing-function: linear;
+  background-color: black;
   padding: 10px 0;
   font-size: 3em;
-  margin-top: 0
+  margin-top: 0;
+  color: white;
 }
 
+@keyframes colorchange {
+  0% {background: white;}
+  25%  {background:  #1ba824;}
+  50%  {background:  #227a2b;}
+  75%  {background:  #12531a;}
+  100%   {background:black;}
+}
+@keyframes textcolorchange {
+  0%   {color:black;}
+  70%   {color:black;}
+  100% {color: white;}
+}
+    
 input {
   outline: none;
   border-radius: 5px;
@@ -126,7 +143,7 @@ i {
 
 .real-logo {
   height: 60px;
-  margin: 0 10px;
+  margin: 0 -5px 0 10px;
 }
 
 .real {

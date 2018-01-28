@@ -48,42 +48,43 @@ function sortLinks(sortType) {
   })
 }
 
-filterByDate.addEventListener('click', () => {
-  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
-    if(filteredDate === false){
-      filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
-      filterClicksArrow.setAttribute('class', 'fa fa-sort'),
-      filteredDate = true
-      sortLinks('updated_at')
-    } else {
-      filteredDate = false
-      storedLinks.reverse(),
-      filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-down')
-    }
+// filterByDate.addEventListener('click', () => {
+//   if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
+//     if(filteredDate === false){
+//       filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
+//       filterClicksArrow.setAttribute('class', 'fa fa-sort'),
+//       filteredDate = true
+//       sortLinks('updated_at')
+//     } else {
+//       filteredDate = false
+//       storedLinks.reverse(),
+//       filterDateArrow.setAttribute('class', 'fa fa-sort fa-sort-down')
+//     }
 
-    listLinks()
-  }
-})
+//     listLinks()
+//   }
+// })
 
 // urlInput.addEventListener('focus', function(){
 //   document.getElementById('add-url-address').value = 'http://'
 // })
 
-filterByVisits.addEventListener('click', () => {
-  if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
-    if(filteredClicks === false) {
-      filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
-      filterDateArrow.setAttribute('class', 'fa fa-sort'),
-      filteredClicks = true,
-      sortLinks('clicks')
-    } else {
-      filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-down'),
-      filteredClicks = false,
-      storedLinks.reverse()
-    }
-    listLinks()
-  }
-})
+
+// filterByVisits.addEventListener('click', () => {
+//   if(selectedFolder.innerText !== "Please Add or Select a Folder to Create a Shortened Link Within"){
+//     if(filteredClicks === false) {
+//       filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-up'),
+//       filterDateArrow.setAttribute('class', 'fa fa-sort'),
+//       filteredClicks = true,
+//       sortLinks('clicks')
+//     } else {
+//       filterClicksArrow.setAttribute('class', 'fa fa-sort fa-sort-down'),
+//       filteredClicks = false,
+//       storedLinks.reverse()
+//     }
+//     listLinks()
+//   }
+// })
 
 
 whatYearIsIt.addEventListener('click', () => {
