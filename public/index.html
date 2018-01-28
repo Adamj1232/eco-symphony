@@ -21,15 +21,36 @@
     </span>
     <h3 id='error-notice'></h3>
     <section class='input-fields'>
-      <section class="folder-input-section">
-        <label for="time-select-on">Lights On</label>
-        <input id="time-select-on" class="input" type="time" placeholder="Light On Time"/>
-      </section>
-      <section class='url-input-section'>
-        <label for="time-select-off">Lights Off</label>
-        <input id="time-select-off" class="input" type="time" placeholder="Light Off Time" />
+      <section class='time-input-section'>
+        <div>
+          <input id="time-select-on" class="input" type="time" placeholder="Light On Time"/>
+          <input id="time-select-off" class="input" type="time" placeholder="Light Off Time" />
+          
+        </div>
         <button id="update-lights-button">Update Light Schedule</button>
       </section>
+
+
+
+      <div id="lampadario">
+        <input class="light-switch" type="radio" name="switch" value="on" />
+        <input class="light-switch" type="radio" name="switch" value="off" checked="checked"/>
+        <label for="switch"></label>
+        <div id="filo"></div>
+        <div id="lampadina">             
+          <div id="sorpresa">
+            <!-- <div id="footer">
+                Hello there!
+            </div>
+            <div id="shadow">
+                Hello there!
+            </div> -->
+          </div>
+        </div>
+        </div>
+
+
+
       <button id="what-year-is-it">Time Travel</button>
     </section>
     <article id="selected-folder-container">
