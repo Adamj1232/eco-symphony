@@ -4,7 +4,8 @@ body {
   margin: 0;
   font-family: "Comic Sans MS", sans-serif;
   color: red;
-  background-image: url("./images/cloud.jpg");
+  background: url("./images/80s-ride.gif") no-repeat center center fixed;
+  background-size: cover;
 }
 
 h1 {
@@ -12,7 +13,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   margin: 0;
 }
 
@@ -151,6 +152,15 @@ h6 {
   margin-right: 5px;
 }
 
+.plant-gif {
+  margin-top: 35px;
+  z-index: 2;
+}
+
+.time-input-section {
+  margin-right: 30px;
+  z-index: 2;
+}
 
 
 
@@ -178,7 +188,7 @@ a {
 #lampadario {
   position:  fixed;
   left: 50%;
-  top: 80px;
+  top: 240px;
 }
 #filo {
   position: relative;
@@ -325,7 +335,7 @@ input[value="on"]:checked ~
   position: fixed;
   width: 94%;
   text-align: center;
-  bottom: 30%;
+  bottom: 1%;
   padding: 0 3%;
   z-index:1;
 }
