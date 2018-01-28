@@ -22,34 +22,32 @@
     <h3 id='error-notice'></h3>
     <section class='input-fields'>
       <section class="folder-input-section">
-        <input id="datepicker" class="input" type="time" placeholder="Light On Time"/>
-        <button id="add-folder-button">Add Folder</button>
+        <label for="time-select-on">Lights On</label>
+        <input id="time-select-on" class="input" type="time" placeholder="Light On Time"/>
       </section>
       <section class='url-input-section'>
-        <input id="add-url-address" class="input" type="time" placeholder="Light Off Time" />
-        <button id="add-url-button">Add URL</button>
+        <label for="time-select-off">Lights Off</label>
+        <input id="time-select-off" class="input" type="time" placeholder="Light Off Time" />
+        <button id="update-lights-button">Update Light Schedule</button>
       </section>
-    <!-- <section class='filter-buttons'>
-      <button id="filter-by-date"><i id='date-arrow' class="fa fa-sort" aria-hidden="true"></i>Filter By Date</button>
-      <button id="filter-by-visits"><i id='clicks-arrow' class="fa fa-sort" aria-hidden="true"></i>Filter By Visits</button>
-    </section> -->
-    <button id="what-year-is-it">Time Travel</button>
-  </section>
-  <article id="selected-folder-container">
-    <p id="selected-folder-title">Selected Folder : <p>
-    <p id="selected-folder"> Please Add or Select a Folder to Create a Shortened Link Within</p>
-  </article>
-  <section id="links-and-folders">
-    <section id='folders'>
+      <button id="what-year-is-it">Time Travel</button>
     </section>
-    <section id="links"/>
+    <article id="selected-folder-container">
+      <p id="selected-folder-title">Selected Folder : <p>
+        <p id="selected-folder"> Choose When Your plant's Day Begins and Ends</p>
+      </article>
+      <section id="links-and-folders">
+        <section id='folders'>
+        </section>
+        <section id="links"/>
+      </section>
     </section>
-  </section>
-  <section class="nineties" id="footer">
-    <span class="page-break"></span>
-    <img class="netscape" src="./images/bestviewed.gif" width="100px">
-    <img class="netscape" src="./images/netscape.gif" width="100px">
-  </section>
+    <img class="plant-gif" src="./images/plant.gif" alt="plant-gif">
+    <section class="nineties" id="footer">
+      <span class="page-break"></span>
+      <img class="netscape" src="./images/bestviewed.gif" width="100px">
+      <img class="netscape" src="./images/netscape.gif" width="100px">
+    </section>
     <script type="text/javascript" src="./links.js"></script>
     <script type="text/javascript" src="./folders.js"></script>
     <script type="text/javascript" src="./helpers.js"></script>

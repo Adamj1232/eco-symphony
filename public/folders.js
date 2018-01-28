@@ -1,5 +1,5 @@
 const addFolderTitle = document.getElementById('add-folder-title')
-const addFolderButton = document.getElementById('add-folder-button')
+// const addFolderButton = document.getElementById('add-folder-button')
 const selectedFolder = document.getElementById('selected-folder')
 const selectedFolderListener = document.getElementsByClassName('new-folder')
 const selectedFolderTitle = document.getElementById('selected-folder-title')
@@ -7,9 +7,9 @@ const selectedFolderTitle = document.getElementById('selected-folder-title')
 const folderArray = []
 let idCounter = 0
 
-addFolderButton.addEventListener('click', () => {
-  evaluateFolder()
-})
+// addFolderButton.addEventListener('click', () => {
+//   evaluateFolder()
+// })
 
 function evaluateFolder() {
   if(addFolderTitle.value &&

@@ -1,5 +1,6 @@
-const addUrlAddress = document.getElementById('add-url-address')
-const addUrlButton = document.getElementById('add-url-button')
+const timeSelectOn = document.getElementById('time-select-on')
+const timeSelectOff = document.getElementById('time-select-off')
+const updateLightSchedule = document.getElementById('update-lights-button')
 const host = window.location.href
 
 let storedLinks = []
@@ -96,24 +97,25 @@ function correctUrl(url) {
   }
 }
 
-addUrlButton.addEventListener('click', () => {
-  const correctedUrl = correctUrl(addUrlAddress.value)
-  if(isUrlValid(correctedUrl)){
-    const newUrl = {
-                    url: correctedUrl,
-                    name: addUrlAddress.value,
-                    folder: folderCheck(addFolderTitle.value),
-                    clicks: 0
-                  }
+updateLightSchedule.addEventListener('click', () => {
+  console.log(timeSelectOn.value, timeSelectOff.value)
+  // const correctedUrl = correctUrl(timeSelectOn.value)
+  // if(isUrlValid(correctedUrl)){
+  //   const newUrl = {
+  //                   url: correctedUrl,
+  //                   name: timeSelectOn.value,
+  //                   folder: folderCheck(addFolderTitle.value),
+  //                   clicks: 0
+  //                 }
 
-    saveNewLink(newUrl)
-    addFolderTitle.value = ''
-    addUrlAddress.value = ''
-  } else {
-    const errorNotice = document.getElementById('error-notice')
-    errorNotice.innerHTML = 'The URL Entered is Invalid, Please Try Again'
-    console.log('url is not valid');
-  }
+  //   saveNewLink(newUrl)
+  //   addFolderTitle.value = ''
+  //   timeSelectOn.value = ''
+  // } else {
+  //   const errorNotice = document.getElementById('error-notice')
+  //   errorNotice.innerHTML = 'The URL Entered is Invalid, Please Try Again'
+  //   console.log('url is not valid');
+  // }
 })
 
 const saveNewLink = (newUrl) => {
