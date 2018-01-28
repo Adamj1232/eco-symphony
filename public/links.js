@@ -110,6 +110,12 @@ updateLightSchedule.addEventListener("click", () => {
   );
   const errorNotice = document.getElementById("error-notice");
 
+  if(!isValidTimeOn || !isValidTimeOff) {
+    console.log('shit')
+    errorNotice.innerHTML = "Enter All Fields in The Time Inputs";
+    return
+  }
+  
   if (
     timeSelectOn.value < timeSelectOff.value &&
     isValidTimeOn &&
@@ -119,8 +125,10 @@ updateLightSchedule.addEventListener("click", () => {
     errorNotice.style.display = "none";
     return;
   } else {
+    errorNotice.style.display = "block";
     errorNotice.innerHTML = "Ensure Light On Time Preceeds Lights Out";
     console.log("off time must be after on");
+    return
   }
 });
 
