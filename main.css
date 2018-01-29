@@ -1,3 +1,8 @@
+@font-face{ 
+    font-family: Starlight;
+    src: url('./public/images/Starlight.ttf') format('truetype');
+}
+
 body {
   background-color: blue;
   text-align: center;
@@ -9,11 +14,13 @@ body {
 }
 
 h1 {
+  font-family: Starlight;
+  color: limegreen;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: lightgreen; */
+  font-size: 3.2em;
   margin: 0;
 }
 
